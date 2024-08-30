@@ -60,12 +60,11 @@
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">GPU-servers</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#hardware">Hardware</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#login-and-home-on-ada">Login and $HOME on “ada*”</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#login-and-home-on-amp-and-amp2">Login and $HOME on “amp” and “amp2”</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#login-and-localstorage">Login and localstorage</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-jobs">Running jobs</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#software-and-modules">Software and modules</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#modules-specific-on-amp"><em>Modules specific on amp</em></a></li>
 <li class="toctree-l3"><a class="reference internal" href="#from-ai-lab"><em>From AI lab</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#software-that-supports-gpus"><em>Software that supports GPUs</em></a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#gpu-libraries-and-tools">GPU libraries and tools</a><ul>
@@ -81,12 +80,6 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#hip-upcoming"><em>HIP (upcoming)</em></a></li>
-</ul>
-</li>
-<li class="toctree-l2"><a class="reference internal" href="#example-jobs">Example jobs</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#example-job-for-meshroom">Example job for meshroom</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#example-job-for-colmap-needs-gpu-for-part-of-the-tasks">Example job for colmap (needs GPU for part of the tasks)</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#singularity">Singularity</a></li>
 </ul>
 </li>
 </ul>
@@ -122,69 +115,52 @@
   <p><span style="color:orange">only partially changed to rocky yet</span></p>
 <section id="gpu-servers">
 <h1>GPU-servers<a class="headerlink" href="#gpu-servers" title="Permalink to this heading"></a></h1>
-<p><span style="color:red"> NB: The current Ubuntu version of amp/amp2, will be reinstalled with Rocky8 in August. Please test your software before on the ada nodes (job submission from base, not like currently from/for amp). </span></p>
-<span style="color:blue">
-Running your jobs on <b>amp</b> currently requires special procedure: you need to ssh into amp to submit jobs (and prepare envs) </span>
-The reason for this are differences in the operating system (amp -- ubuntu, base -- rocky).<br>
+<p><span style="color:blue">job submission from “base”</span></p>
+<p><span style="color:red">The AI-lab “Illukas” modules will NOT work on the cluster due to different OS</span></p>
+<br>
 <br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="hardware">
 <h2>Hardware<a class="headerlink" href="#hardware" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
- <div class="simple1"> <b>amp</b> <ul class="simple">
+ <div class="simple1"> <b>amp1</b> <ul class="simple">
 <li><p>CPU: 2x AMD EPYC 7742 64core</p></li>
 <li><p>RAM: 1 TB</p></li>
 <li><p>GPUs: 8x A100 Nvidia 40GB</p></li>
-<li><p>OS: Ubuntu</p></li>
-<li><p><span style="color:blue">job submission from “amp”</span></p></li>
+<li><p>OS: Rocky8</p></li>
 </ul>
  </div> 
  <br> <div class="simple1"> <b>amp2</b> <ul class="simple">
 <li><p>CPU: 2x AMD EPYC 7713 64core (3rd gen EPYC, Zen3)</p></li>
 <li><p>RAM: 2 TB</p></li>
 <li><p>GPUs: 8x A100 Nvidia 80GB</p></li>
-<li><p>OS: Ubuntu</p></li>
-<li><p><span style="color:blue">job submission from “amp”</span></p></li>
+<li><p>OS: Rocky8</p></li>
 </ul>
  </div> 
- <br> <div class="simple1"> <b>ada2</b> <ul class="simple">
+ <br> <div class="simple1"> <b>ada[1,2]</b> <ul class="simple">
 <li><p>CPU: 2x AMD EPYC 9354 32core (4th gen EPYC, Zen4)</p></li>
-<li><p>RAM: 2 TB</p></li>
+<li><p>RAM: 1.5 TB</p></li>
 <li><p>GPUs: 2x L40 Nvidia 48GB</p></li>
 <li><p>avx512</p></li>
 <li><p>OS: Rocky8</p></li>
-<li><p><span style="color:blue">job submission from “base”</span></p></li>
 </ul>
  </div> 
  <br><br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-<section id="login-and-home-on-ada">
-<h2>Login and $HOME on “ada*”<a class="headerlink" href="#login-and-home-on-ada" title="Permalink to this heading"></a></h2>
+<section id="login-and-localstorage">
+<h2>Login and localstorage<a class="headerlink" href="#login-and-localstorage" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>No direct login, jobs are submitted from “base”, use <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">-w</span> <span class="pre">ada2</span> <span class="pre">-p</span> <span class="pre">gpu</span> <span class="pre">--gres=gpu:L40</span> <span class="pre">--pty</span> <span class="pre">bash</span></code></p>
-<br>
-<br>
-<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-<section id="login-and-home-on-amp-and-amp2">
-<h2>Login and $HOME on “amp” and “amp2”<a class="headerlink" href="#login-and-home-on-amp-and-amp2" title="Permalink to this heading"></a></h2>
-<hr class="docutils" />
-<p>The server shares the home directory with all cluster nodes.</p>
-<p><strong>Amp</strong> cannot login directly, only through a jump host:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span>  <span class="n">Uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@amp</span> <span class="o">-</span><span class="n">J</span> <span class="n">Uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span> 
-</pre></div>
-</div>
-<p>The home-directory is the same as the cluster (<code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/home/&lt;uniID&gt;</span></code>), additionally the AI-Lab home directories are mounted under <code class="docutils literal notranslate"><span class="pre">/illukas/home/</span></code></p>
+<p>No direct login, jobs are submitted from “base”, use <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">-p</span> <span class="pre">gpu</span> <span class="pre">--gres=gpu:L40</span> <span class="pre">--pty</span> <span class="pre">bash</span></code></p>
+<p>amp[1,2] have <code class="docutils literal notranslate"><span class="pre">/localstorage</span></code> a 10 TB NVMe partition for fast data access. Data in directory has a longer sstorage duration than data in the 4 TB <code class="docutils literal notranslate"><span class="pre">/tmp</span></code> (<code class="docutils literal notranslate"><span class="pre">/state/partition1</span></code> is the same as <code class="docutils literal notranslate"><span class="pre">/tmp</span></code>)</p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
 <section id="running-jobs">
 <h2>Running jobs<a class="headerlink" href="#running-jobs" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>Jobs for <strong>amp/amp2</strong> need to be submitted from <strong>amp/amp2</strong> (not from <strong>base)</strong> to ensure that all environment is set-up correctly.</p>
 <p>Jobs need to be submitted using <code class="docutils literal notranslate"><span class="pre">srun</span></code> or <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, do not run jobs outside the batch system.</p>
 <p>Interactive jobs are started using <code class="docutils literal notranslate"><span class="pre">srun</span></code>:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
@@ -194,10 +170,11 @@ The reason for this are differences in the operating system (amp -- ubuntu, base
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">p</span> <span class="n">gpu</span> <span class="o">--</span><span class="n">gres</span><span class="o">=</span><span class="n">gpu</span><span class="p">:</span><span class="n">A100</span><span class="p">:</span><span class="mi">1</span> <span class="o">-</span><span class="n">t</span> <span class="mi">1</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
 </pre></div>
 </div>
-<p>both <strong>amp/amp2</strong> are in the same partition (<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">gpu</span></code>) so jobs that do not have specific requirements can run on any of the two nodes. If you need a specific type, e.g. for testing performance or because of memory requirements:</p>
+<p>all nodes with GPUs are in the same partition (<code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">gpu</span></code>, but also in <code class="docutils literal notranslate"><span class="pre">short</span></code>, which has higher priority, but shorter time-limit) so jobs that do not have specific requirements can run on any of the nodes. If you need a specific type, e.g. for testing performance or because of memory requirements:</p>
 <ul class="simple">
-<li><p>it is possible to request the feature “A100-40” (for the 40GB A100s in <strong>amp)</strong> or “A100-80” (for the 80GB A100s in <strong>amp2):</strong> <code class="docutils literal notranslate"><span class="pre">--constraint=A100-40</span></code></p></li>
-<li><p>another option is to request the job to run on a specific node, using the <code class="docutils literal notranslate"><span class="pre">-w</span></code> switch (e.g. <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">-p</span> <span class="pre">gpu</span> <span class="pre">-w</span> <span class="pre">amp</span> <span class="pre">...</span> </code>)</p></li>
+<li><p>it is possible to request the feature “A100-40” (for the 40GB A100s), “A100-80” (for the 80GB A100s):** <code class="docutils literal notranslate"><span class="pre">--gres=gpu:A100:1</span> <span class="pre">--constraint=A100-80</span></code> or <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span> <span class="pre">--constraint=A100-40</span></code></p></li>
+<li><p>it is also possible to request the”compute capability, e.g. cc80 (for A100) or cc89 (for L40) using <code class="docutils literal notranslate"><span class="pre">--gres=gpu:1</span> <span class="pre">--constraint=cc89</span></code> = <code class="docutils literal notranslate"><span class="pre">--gres=gpu:L40:1</span></code></p></li>
+<li><p>another option is to request the job to run on a specific node, using the <code class="docutils literal notranslate"><span class="pre">-w</span></code> switch (e.g. <code class="docutils literal notranslate"><span class="pre">srun</span> <span class="pre">-p</span> <span class="pre">gpu</span> <span class="pre">-w</span> <span class="pre">amp1</span> <span class="pre">--gres=gpu:A100:1</span> <span class="pre">...</span> </code>)</p></li>
 </ul>
 <p>You can see which GPUs have been assigned to your job using <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">$CUDA_VISIBLE_DEVICES</span></code>, <strong>the CUDA-deviceID in your programs always start with “0” (no matter which physical GPU was assigned to you by SLURM)</strong>.</p>
 <br>
@@ -206,27 +183,27 @@ The reason for this are differences in the operating system (amp -- ubuntu, base
 <section id="software-and-modules">
 <h2>Software and modules<a class="headerlink" href="#software-and-modules" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<section id="modules-specific-on-amp">
-<h3><em>Modules specific on amp</em><a class="headerlink" href="#modules-specific-on-amp" title="Permalink to this heading"></a></h3>
-<p>Enable the SPACK software modules (special for <strong>amp):</strong></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">amp</span><span class="o">-</span><span class="n">spack</span>
-</pre></div>
-</div>
-<p>The Nvidia HPC SDK (includes CUDA, nvcc and PGI compilers) is available with the following module directory (see below):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">amp</span>
-</pre></div>
-</div>
-</section>
+<p>same modules as on all nodes, i.e. the rocky8 and rocky8-spack modules.</p>
 <section id="from-ai-lab">
 <h3><em>From AI lab</em><a class="headerlink" href="#from-ai-lab" title="Permalink to this heading"></a></h3>
-<p>Enable the modules for AI lab software from illukas:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">amp</span>
-</pre></div>
-</div>
+<p>will not work due to different OS</p>
+</section>
+<section id="software-that-supports-gpus">
+<h3><em>Software that supports GPUs</em><a class="headerlink" href="#software-that-supports-gpus" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p>JupyterLab, see page on <a class="reference internal" href="data-analysis/jupyter.html"><span class="doc">JupyterLab</span></a></p></li>
+<li><p>Gaussian, see page on <a class="reference internal" href="chemistry/gaussian.html"><span class="doc">Gaussian</span></a></p></li>
+<li><p>cp2k</p></li>
+<li><p>StarCCM+</p></li>
+<li><p>Julia</p></li>
+<li><p>Chapel</p></li>
+<li><p>Singularity (apptainer), see page on <a class="reference internal" href="singularity.html"><span class="doc">Singularity</span></a></p></li>
+</ul>
 <br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><p><span style="color:orange">only partially changed to rocky yet</span></p>
+</section>
 </section>
 <section id="gpu-libraries-and-tools">
 <h2>GPU libraries and tools<a class="headerlink" href="#gpu-libraries-and-tools" title="Permalink to this heading"></a></h2>
@@ -316,11 +293,11 @@ The reason for this are differences in the operating system (amp -- ubuntu, base
 <section id="id1">
 <h4><em>Nvidia HPC SDK</em><a class="headerlink" href="#id1" title="Permalink to this heading"></a></h4>
 <p>Installed are versions 21.2, 21.5 and 21.9 (2021). These come with modulefiles, to use them, enable the the directory:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">amp</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
 </pre></div>
 </div>
 <p>then load the module you want to use, e.g.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">nvhpc</span><span class="o">-</span><span class="n">nompi</span><span class="o">/</span><span class="mf">21.5</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">nvhpc</span>
 </pre></div>
 </div>
 <p>The HPC SDK also comes with a profiler, to identify regions that would benefit most from GPU acceleration.</p>
@@ -368,50 +345,7 @@ get accelerator information</p>
 <p>For porting code to AMD-Instinct based LUMI, the AMD HIP SDK will be installed.</p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-</section>
-<section id="example-jobs">
-<h2>Example jobs<a class="headerlink" href="#example-jobs" title="Permalink to this heading"></a></h2>
-<hr class="docutils" />
-<section id="example-job-for-meshroom">
-<h3>Example job for meshroom<a class="headerlink" href="#example-job-for-meshroom" title="Permalink to this heading"></a></h3>
-<p>** under construction **</p>
-</section>
-<section id="example-job-for-colmap-needs-gpu-for-part-of-the-tasks">
-<h3>Example job for colmap (needs GPU for part of the tasks)<a class="headerlink" href="#example-job-for-colmap-needs-gpu-for-part-of-the-tasks" title="Permalink to this heading"></a></h3>
-<p>** under construction **</p>
-<p>See the AI-lab guide <a class="reference external" href="https://gitlab.cs.ttu.ee/ai-lab/samples/structure-from-motion-with-colmap">https://gitlab.cs.ttu.ee/ai-lab/samples/structure-from-motion-with-colmap</a>, which needs to be slightly adapted.</p>
-<br></section>
-<section id="singularity">
-<h3>Singularity<a class="headerlink" href="#singularity" title="Permalink to this heading"></a></h3>
-<p>The container solution <em>singularity</em> is available (can also run docker container).
-Use with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">amp</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">Singularity</span>
-</pre></div>
-</div>
-<p>pull the docker image you want, here ubuntu:18.04:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">singularity</span> <span class="n">pull</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">ubuntu</span><span class="p">:</span><span class="mf">18.04</span>
-</pre></div>
-</div>
-<p>write an sbatch file (here called <code class="docutils literal notranslate"><span class="pre">ubuntu.slurm</span></code>):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
-<span class="c1">#SBATCH -t 0-00:30</span>
-<span class="c1">#SBATCH -N 1</span>
-<span class="c1">#SBATCH -c 1</span>
-<span class="c1">#SBATCH -p gpu</span>
-<span class="c1">#SBATCH --gres=gpu:A100:1</span>
-<span class="c1">#SBATCH --mem-per-cpu=4000</span>
-
-<span class="n">singularity</span> <span class="n">exec</span> <span class="n">docker</span><span class="p">:</span><span class="o">//</span><span class="n">ubuntu</span><span class="p">:</span><span class="mf">18.04</span> <span class="n">cat</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">issue</span>
-</pre></div>
-</div>
-<p>submit to the queueing system with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">ubuntu</span><span class="o">.</span><span class="n">slurm</span>
-</pre></div>
-</div>
-<p>and when the resources become available, your job will be executed.</p>
-<br>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><br>
 <br></section>
 </section>
 </section>
