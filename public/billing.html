@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Acknowledgement &mdash; HPC user-guides 2024 documentation</title>
+  <title>Billing &mdash; HPC user-guides 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
@@ -22,8 +22,7 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Containers (Singularity &amp; Docker)" href="singularity.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -46,7 +45,7 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul class="current">
+              <ul>
 <li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
@@ -59,7 +58,7 @@
 <li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
 <li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU-servers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Acknowledgement</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
 </ul>
 
         </div>
@@ -76,9 +75,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Acknowledgement</li>
+      <li class="breadcrumb-item active">Billing</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/acknowledgement.md.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/billing.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -86,18 +85,125 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="acknowledgement">
-<h1>Acknowledgement<a class="headerlink" href="#acknowledgement" title="Permalink to this heading"></a></h1>
-<p>When publishing results obtained by using the systems of the HPC Centre, an acknowledgement would be appreciated. It helps emphasize the usefulness and importance of our services and to acquire funding for new systems. Please include a sentence along the lines of:</p>
-<p>“<em>The simulations were carried out in the High Performance Computing Centre of TalTech.</em>”</p>
+  <section id="billing">
+<h1>Billing<a class="headerlink" href="#billing" title="Permalink to this heading"></a></h1>
+<section id="virtual-server-hosting-openstack-cloud">
+<h2>Virtual server hosting (OpenStack Cloud)<a class="headerlink" href="#virtual-server-hosting-openstack-cloud" title="Permalink to this heading"></a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>What</th>
+<th>Unit</th>
+<th>TalTech internal</th>
+<th>External</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPU</td>
+<td>CPU*hour</td>
+<td>0.002 EUR</td>
+<td>0.003 EUR</td>
+</tr>
+<tr>
+<td>Memory</td>
+<td>RAM*hour</td>
+<td>0.001 EUR</td>
+<td>0.0013 EUR</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>TB*year</td>
+<td>20 EUR</td>
+<td>80 EUR</td>
+</tr>
+</tbody>
+</table></section>
+<section id="taltech-cluster">
+<h2>TalTech cluster<a class="headerlink" href="#taltech-cluster" title="Permalink to this heading"></a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>What</th>
+<th>Unit</th>
+<th>TalTech internal</th>
+<th>External</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPUcore &amp; &lt; 6 GB RAM</td>
+<td>CPUcore*hour</td>
+<td>0.006 EUR</td>
+<td>0.012 EUR</td>
+</tr>
+<tr>
+<td>CPUcore &amp; &gt; 6 GB RAM</td>
+<td>6 GB RAM*hour</td>
+<td>0.006 EUR</td>
+<td>0.012 EUR</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>GPU*hour</td>
+<td>0.20 EUR</td>
+<td>0.50 EUR</td>
+</tr>
+<tr>
+<td>Storage</td>
+<td>1 TB*Year</td>
+<td>20 EUR</td>
+<td>80 EUR</td>
+</tr>
+</tbody>
+</table><p>More details on how to calculate computational costs for TalTech cluster can be found in the <a class="reference external" href="/access/cluster#monitoring-resource-usage">Monitoring resources part of the Quickstart page</a>.</p>
+</section>
+<section id="lumi-cluster-for-users-from-estonia">
+<h2>LUMI cluster for users from Estonia<a class="headerlink" href="#lumi-cluster-for-users-from-estonia" title="Permalink to this heading"></a></h2>
+<table border="1" class="docutils">
+<thead>
+<tr>
+<th>What</th>
+<th>Unit</th>
+<th>Price for TalTech</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CPUcore</td>
+<td>CPUcore*hour</td>
+<td>0.008 EUR</td>
+</tr>
+<tr>
+<td>GPU</td>
+<td>GPU*hour</td>
+<td>0.35 EUR</td>
+</tr>
+<tr>
+<td>User home directory</td>
+<td>20 GB</td>
+<td>free</td>
+</tr>
+<tr>
+<td>Project storage (persistent and scratch)</td>
+<td>TB*hour</td>
+<td>0.0106 EUR</td>
+</tr>
+<tr>
+<td>Flash based scratch storage</td>
+<td>TB*hour</td>
+<td>10 x 0.0106 EUR</td>
+</tr>
+</tbody>
+</table><p>A more detailed guide on how to calculate computational costs for LUMI can be found in the <a class="reference external" href="https://docs.lumi-supercomputer.eu/runjobs/lumi_env/billing/#compute-billing">LUMI billing policy</a>.</p>
+<hr class="docutils" />
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="singularity.html" class="btn btn-neutral float-left" title="Containers (Singularity &amp; Docker)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-    </div>
+          <footer>
 
   <hr/>
 
