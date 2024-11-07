@@ -60,7 +60,6 @@
 <li class="toctree-l4"><a class="reference internal" href="#status-of-a-job">Status of a job</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#load-of-the-node">Load of the node</a></li>
 <li class="toctree-l4"><a class="reference internal" href="#monitoring-with-interactive-job">Monitoring with interactive job</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#monitoring-jobs-using-gpus">Monitoring jobs using GPUs</a></li>
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#monitoring-resource-usage">Monitoring resource usage</a></li>
@@ -150,8 +149,8 @@
 <p>In the home directory, the user can create, delete, and overwrite files and perform calculations (if slurm script does not force program to use <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory). The home directory is limited in size of 500 GB and backups are performed once per week.</p>
 <p>The home directory can be accessed from console or by GUI programs, but it cannot be mounted. For mounting was created special <code class="docutils literal notranslate"><span class="pre">smbhome</span></code> and <code class="docutils literal notranslate"><span class="pre">smbgroup</span></code> folders (<code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/smbhome/$USER/</span></code> and <code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/smbgroup/</span></code>, respectively). More about <code class="docutils literal notranslate"><span class="pre">smb</span></code> folders can be found <a class="reference external" href="https://docs.hpc.taltech.ee/quickstart.html#smb-cifs-exported-filesystems">here</a>.</p>
 <p>Some programs and scripts suppose that files will be transfer to <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory at compute node and calculations will be done there. If job will be killed, for example due  to the time limit back transfer will not occur. In this case, user needs to know at which node this job was running (see <code class="docutils literal notranslate"><span class="pre">slurm-$job_id.stat</span></code>), to connect to exactly this node (in example it is green11). <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory will be in <code class="docutils literal notranslate"><span class="pre">/state/partition1/</span></code> and corresponds to jobID number.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">w</span> <span class="n">green11</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
-<span class="n">cd</span> <span class="o">/</span><span class="n">state</span><span class="o">/</span><span class="n">partition1</span><span class="o">/</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w"> </span>-w<span class="w"> </span>green11<span class="w"> </span>--pty<span class="w"> </span>bash
+<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>/state/partition1/
 </pre></div>
 </div>
 <p>Please note that the scratch is <em>not</em> shared between nodes, so parallel MPI jobs that span multiple nodes cannot access each other’s scratch files.</p>
@@ -174,7 +173,7 @@ The most often used SLURM commands are:<ul class="simple">
 </ul>
 </div>
 <br><p>For more parameters see the man-pages (manual) of the commands <code class="docutils literal notranslate"><span class="pre">srun</span></code>, <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> and <code class="docutils literal notranslate"><span class="pre">squeue</span></code>. For this use the command <code class="docutils literal notranslate"><span class="pre">man</span></code> followed by the program-name whose manual you want to see, e.g.:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">man</span> <span class="n">srun</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>man<span class="w"> </span>srun
 </pre></div>
 </div>
 <p>Requesting resources with SLURM can be done either with parameters to <code class="docutils literal notranslate"><span class="pre">srun</span></code> or in a batch script invoked by <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
@@ -189,36 +188,36 @@ The most often used SLURM commands are:<ul class="simple">
 </ul>
  </div> 
  <br><p><strong>Running an interactive session</strong> longer than default 10 min. (here 1 hour):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">t</span> <span class="mi">01</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span> 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w"> </span>-t<span class="w"> </span><span class="m">01</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>
 </pre></div>
 </div>
 <p>This logs you into one of the compute nodes, there you can load modules and run interactive applications, compile your code, etc.</p>
 <p>With <code class="docutils literal notranslate"><span class="pre">srun</span></code> is reccomended to use CLI (command-line interface) instead of GUI (Graphical user interface) programs if it is possible. For example, use octave-CLI or octave instead of octave-GUI.</p>
 <p><strong>Running a simple non-interactive single process job</strong> that lasts longer than default 4 hours (here 5 hours):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">--</span><span class="n">partition</span><span class="o">=</span><span class="n">common</span> <span class="o">-</span><span class="n">t</span> <span class="mi">05</span><span class="p">:</span><span class="mi">00</span><span class="p">:</span><span class="mi">00</span> <span class="o">-</span><span class="n">n</span> <span class="mi">1</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w"> </span>--partition<span class="o">=</span>common<span class="w"> </span>-t<span class="w"> </span><span class="m">05</span>:00:00<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>./a.out
 </pre></div>
 </div>
 <p><em><strong>NB!</strong></em> <em>Environment variables for OpenMP are <em>not</em> set automatically, e.g.</em></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span>  <span class="o">-</span><span class="n">N</span> <span class="mi">1</span> <span class="o">--</span><span class="n">cpus</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">task</span><span class="o">=</span><span class="mi">28</span> <span class="o">./</span><span class="n">a</span><span class="o">.</span><span class="n">out</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w">  </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">28</span><span class="w"> </span>./a.out
 </pre></div>
 </div>
 <p>would <em>not</em> set <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code> to 28, this has to be done manually. So usually, for parallel jobs it is recommended to use scripts for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
 <p>Below is given an example of batch slurm script (filename: <code class="docutils literal notranslate"><span class="pre">myjob.slurm</span></code>) with explanation of the commands.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
-#SBATCH --partition=common    ### Partition
-#SBATCH --job-name=HelloOMP   ### Job Name           -J
-#SBATCH --time=00:10:00       ### WallTime           -t
-#SBATCH --nodes=4             ### Number of Nodes    -N 
-#SBATCH --ntasks-per-node=7   ### Number of tasks (MPI processes)
-#SBATCH --cpus-per-task=4     ### Number of threads per task (OMP threads)
-#SBATCH --account=hpcrcf      ### In case of several accounts, specifies account used for job submission
-#SBATCH --mem-per-cpu=100     ### Min RAM required in MB
-#SBATCH --array=13-18         ### Array tasks for parameter sweep
-
-export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK		### setup environment
-module load gcc						### setup environment
-./hello_omp $SLURM_ARRAY_TASK_ID			### only for arrays, setup output files with system information
-mpirun -n 28 ./hello_mpi 				### run program
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">#!/bin/bash</span>
+<span class="w">    </span><span class="c1">#SBATCH --partition=common    ### Partition</span>
+<span class="w">    </span><span class="c1">#SBATCH --job-name=HelloOMP   ### Job Name           -J</span>
+<span class="w">    </span><span class="c1">#SBATCH --time=00:10:00       ### WallTime           -t</span>
+<span class="w">    </span><span class="c1">#SBATCH --nodes=4             ### Number of Nodes    -N </span>
+<span class="w">    </span><span class="c1">#SBATCH --ntasks-per-node=7   ### Number of tasks (MPI processes)</span>
+<span class="w">    </span><span class="c1">#SBATCH --cpus-per-task=4     ### Number of threads per task (OMP threads)</span>
+<span class="w">    </span><span class="c1">#SBATCH --account=hpcrcf      ### In case of several accounts, specifies account used for job submission</span>
+<span class="w">    </span><span class="c1">#SBATCH --mem-per-cpu=100     ### Min RAM required in MB</span>
+<span class="w">    </span><span class="c1">#SBATCH --array=13-18         ### Array tasks for parameter sweep</span>
+<span class="w">    </span>
+<span class="w">    </span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w">    	</span><span class="c1">### setup environment</span>
+<span class="w">    </span>module<span class="w"> </span>load<span class="w"> </span>gcc<span class="w">    					</span><span class="c1">### setup environment</span>
+<span class="w">    </span>./hello_omp<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w">    		</span><span class="c1">### only for arrays, setup output files with system information</span>
+<span class="w">    </span>srun<span class="w"> </span>-n<span class="w"> </span><span class="m">28</span><span class="w"> </span>./hello_mpi<span class="w">     			</span><span class="c1">### run program</span>
 </pre></div>
 </div>
 <p>In this example are listed some of the more common submission parameters. There are many more possible job-submission options, moreover, some of the options listed above  are not useful to apply together. An explanation of the variables used inside SLURM/SBATCH can be found <a class="reference external" href="https://slurm.schedmd.com/sbatch.html#lbAJ">here</a>. In contrast to e.g. GridEngine, SLURM allows fine-grained resource requests, using parameters like <code class="docutils literal notranslate"><span class="pre">--ntasks-per-core</span></code> or <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code>.</p>
@@ -233,7 +232,7 @@ mpirun -n 28 ./hello_mpi 				### run program
 </ul>
 </div> 
 <br><p>The job is then submitted to SLURM by</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">sbatch</span> <span class="n">myjob</span><span class="o">.</span><span class="n">slurm</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>sbatch<span class="w"> </span>myjob.slurm
 </pre></div>
 </div>
 <p>and will be executed when the requested resources become available.</p>
@@ -272,7 +271,7 @@ Some useful online resources:<ul class="simple">
 <section id="status-of-a-job">
 <h4>Status of a job<a class="headerlink" href="#status-of-a-job" title="Permalink to this heading"></a></h4>
 <p>User can check the status his jobs (whether they are running or not, and on which node) by the command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>squeue -u $USER
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
 </pre></div>
 </div>
 <p><img alt="squeue" src="_images/squeue.png" /></p>
@@ -280,13 +279,13 @@ Some useful online resources:<ul class="simple">
 <section id="load-of-the-node">
 <h4>Load of the node<a class="headerlink" href="#load-of-the-node" title="Permalink to this heading"></a></h4>
 <p>User can check the load of the node his job runs on, status and configuration of this node by command</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scontrol</span> <span class="n">show</span> <span class="n">node</span> <span class="o">&lt;</span><span class="n">nodename</span><span class="o">&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>scontrol<span class="w"> </span>show<span class="w"> </span>node<span class="w"> </span>&lt;nodename&gt;
 </pre></div>
 </div>
 <p>the load should not exceed the number of hyperthreads (CPUs in SLURM notation) of the node.</p>
 <p><img alt="scontrol" src="_images/scontrol.png" /></p>
 <p>In case of MPI parallel runs statistics of several nodes can be monitored by specifying nodes names. For example:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">scontrol</span> <span class="n">show</span> <span class="n">node</span><span class="o">=</span><span class="n">green</span><span class="p">[</span><span class="mi">25</span><span class="o">-</span><span class="mi">26</span><span class="p">]</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>scontrol<span class="w"> </span>show<span class="w"> </span><span class="nv">node</span><span class="o">=</span>green<span class="o">[</span><span class="m">25</span>-26<span class="o">]</span>
 </pre></div>
 </div>
 <p>Node features for node selection using <code class="docutils literal notranslate"><span class="pre">--constraint=</span></code>:</p>
@@ -355,42 +354,54 @@ Some useful online resources:<ul class="simple">
 <section id="monitoring-with-interactive-job">
 <h4>Monitoring with interactive job<a class="headerlink" href="#monitoring-with-interactive-job" title="Permalink to this heading"></a></h4>
 <p>It is possible to submit a second interactive job to the node where the main job is running, check with <code class="docutils literal notranslate"><span class="pre">squeue</span></code> where your job is running, then submit</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">-</span><span class="n">w</span> <span class="o">&lt;</span><span class="n">nodename</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">pty</span> <span class="n">htop</span>
-</pre></div>
-</div>
-<p>Note that there must be free slots on the machine, so if you cannot use <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">80</span></code> or <code class="docutils literal notranslate"><span class="pre">--exclusive</span></code> for your main job (use <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">79</span></code>).</p>
-<p><img alt="htop" src="_images/htop.png" /></p>
-<p>Press <code class="docutils literal notranslate"><span class="pre">q</span></code> to exit.</p>
-<details><summary>You can also add a column that shows the CPU number of the program (for more details click here).</summary><p>For Linux <strong>F1-F10</strong> keys should be used, for <strong>Mac</strong> - just click on the corresponding buttons.</p>
-<p><img alt="htop-1" src="_images/htop-1.png" /></p>
-<p>Will appear a new column, showing the CPU number of the program.</p>
-<p><img alt="htop-2" src="_images/htop-2.png" /></p>
-</details>   <br></section>
-<section id="monitoring-jobs-using-gpus">
-<h4>Monitoring jobs using GPUs<a class="headerlink" href="#monitoring-jobs-using-gpus" title="Permalink to this heading"></a></h4>
-<p>Log to <strong>amp</strong> or <strong>amp2</strong>. Command</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>echo ${SLURM_STEP_GPUS:-$SLURM_JOB_GPUS} 
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>-w<span class="w"> </span>&lt;nodename&gt;<span class="w"> </span>--pty<span class="w"> </span>htop
+
+Note<span class="w"> </span>that<span class="w"> </span>there<span class="w"> </span>must<span class="w"> </span>be<span class="w"> </span>free<span class="w"> </span>slots<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>machine,<span class="w"> </span>so<span class="w"> </span><span class="k">if</span><span class="w"> </span>you<span class="w"> </span>cannot<span class="w"> </span>use<span class="w"> </span><span class="sb">`</span>-n<span class="w"> </span><span class="m">80</span><span class="sb">`</span><span class="w"> </span>or<span class="w"> </span><span class="sb">`</span>--exclusive<span class="sb">`</span><span class="w"> </span><span class="k">for</span><span class="w"> </span>your<span class="w"> </span>main<span class="w"> </span>job<span class="w"> </span><span class="o">(</span>use<span class="w"> </span><span class="sb">`</span>-n<span class="w"> </span><span class="m">79</span><span class="sb">`</span><span class="o">)</span>.
+
+!<span class="o">[</span>htop<span class="o">](</span>pictures/htop.png<span class="o">)</span>
+
+Press<span class="w"> </span><span class="sb">`</span>q<span class="sb">`</span><span class="w"> </span>to<span class="w"> </span>exit.
+
+&lt;details&gt;&lt;summary&gt;You<span class="w"> </span>can<span class="w"> </span>also<span class="w"> </span>add<span class="w"> </span>a<span class="w"> </span>column<span class="w"> </span>that<span class="w"> </span>shows<span class="w"> </span>the<span class="w"> </span>CPU<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>program<span class="w"> </span><span class="o">(</span><span class="k">for</span><span class="w"> </span>more<span class="w"> </span>details<span class="w"> </span>click<span class="w"> </span>here<span class="o">)</span>.&lt;/summary&gt;
+
+For<span class="w"> </span>Linux<span class="w"> </span>**F1-F10**<span class="w"> </span>keys<span class="w"> </span>should<span class="w"> </span>be<span class="w"> </span>used,<span class="w"> </span><span class="k">for</span><span class="w"> </span>**Mac**<span class="w"> </span>-<span class="w"> </span>just<span class="w"> </span>click<span class="w"> </span>on<span class="w"> </span>the<span class="w"> </span>corresponding<span class="w"> </span>buttons.
+
+!<span class="o">[</span>htop-1<span class="o">](</span>pictures/htop-1.png<span class="o">)</span>
+
+Will<span class="w"> </span>appear<span class="w"> </span>a<span class="w"> </span>new<span class="w"> </span>column,<span class="w"> </span>showing<span class="w"> </span>the<span class="w"> </span>CPU<span class="w"> </span>number<span class="w"> </span>of<span class="w"> </span>the<span class="w"> </span>program.
+
+!<span class="o">[</span>htop-2<span class="o">](</span>pictures/htop-2.png<span class="o">)</span>
+
+&lt;/details&gt;<span class="w">   </span>
+
+&lt;br&gt;
+
+<span class="c1">#### Monitoring jobs using GPUs</span>
+
+Log<span class="w"> </span>to<span class="w"> </span>**amp**<span class="w"> </span>or<span class="w"> </span>**amp2**.<span class="w"> </span>Command<span class="w"> </span>
+<span class="sb">```</span>bash
+<span class="w">    </span><span class="nb">echo</span><span class="w"> </span><span class="si">${</span><span class="nv">SLURM_STEP_GPUS</span><span class="k">:-</span><span class="nv">$SLURM_JOB_GPUS</span><span class="si">}</span><span class="w"> </span>
 </pre></div>
 </div>
 <p>shows the GPU IDs allocated to your job.</p>
 <p>GPUs load can be checked by command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvidia</span><span class="o">-</span><span class="n">smi</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>nvidia-smi
 </pre></div>
 </div>
 <p><img alt="nvidia-smi" src="_images/nvidia-smi.png" /></p>
 <p>Press <code class="docutils literal notranslate"><span class="pre">control+c</span></code> to exit.</p>
 <p>Another option is to logging to <strong>amp</strong> or <strong>amp2</strong>, check which GPUs are allocated to your job, and give command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">nvtop</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>nvtop
 </pre></div>
 </div>
 <p><img alt="nvtop" src="_images/nvtop.png" /></p>
 <p>Press <code class="docutils literal notranslate"><span class="pre">q</span></code> to exit.</p>
 <p>An alternative method <strong>on Linux computers,</strong> if you have X11. Logging to <strong>base/amp</strong> with <code class="docutils literal notranslate"><span class="pre">--X</span></code> key:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">--</span><span class="n">X</span> <span class="n">UniID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>ssh<span class="w"> </span>--X<span class="w"> </span>UniID@base.hpc.taltech.ee
 </pre></div>
 </div>
 <p>then submit your main interactive job</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">srun</span> <span class="o">--</span><span class="n">x11</span> <span class="o">-</span><span class="n">n</span> <span class="o">&lt;</span><span class="n">numtasks</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">cpus</span><span class="o">-</span><span class="n">per</span><span class="o">-</span><span class="n">task</span><span class="o">=&lt;</span><span class="n">numthreads</span><span class="o">&gt;</span> <span class="o">--</span><span class="n">pty</span> <span class="n">bash</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w"> </span>--x11<span class="w"> </span>-n<span class="w"> </span>&lt;numtasks&gt;<span class="w"> </span>--cpus-per-task<span class="o">=</span>&lt;numthreads&gt;<span class="w"> </span>--pty<span class="w"> </span>bash
 </pre></div>
 </div>
 <p>and start an <code class="docutils literal notranslate"><span class="pre">xterm</span> <span class="pre">-e</span> <span class="pre">htop</span> <span class="pre">&amp;</span></code> in the session.</p>
@@ -404,17 +415,17 @@ Some useful online resources:<ul class="simple">
 <p><img alt="disk_usage" src="_images/disk_usage.png" /></p>
 <p>You can also monitor your resource usage by <code class="docutils literal notranslate"><span class="pre">taltech-lsquota.bash</span></code> script and <code class="docutils literal notranslate"><span class="pre">sreport</span></code> command.</p>
 <p>Current disk usage:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">taltech</span><span class="o">-</span><span class="n">lsquota</span><span class="o">.</span><span class="n">bash</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>taltech-lsquota.bash
 </pre></div>
 </div>
 <p><img alt="usage" src="_images/usage2.png" /></p>
 <p>CPU usage during last day:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sreport -t Hours cluster UserUtilizationByAccount Users=$USER
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>sreport<span class="w"> </span>-t<span class="w"> </span>Hours<span class="w"> </span>cluster<span class="w"> </span>UserUtilizationByAccount<span class="w"> </span><span class="nv">Users</span><span class="o">=</span><span class="nv">$USER</span>
 </pre></div>
 </div>
 <p><img alt="CPUhours" src="_images/CPUhours.png" /></p>
 <p>CPU usage in specific period (e.g. since beginning of this year):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>sreport -t Hours cluster UserUtilizationByAccount Users=$USER start=2024-01-01T00:00:00 end=2024-12-31T23:59:59
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>sreport<span class="w"> </span>-t<span class="w"> </span>Hours<span class="w"> </span>cluster<span class="w"> </span>UserUtilizationByAccount<span class="w"> </span><span class="nv">Users</span><span class="o">=</span><span class="nv">$USER</span><span class="w"> </span><span class="nv">start</span><span class="o">=</span><span class="m">2024</span>-01-01T00:00:00<span class="w"> </span><span class="nv">end</span><span class="o">=</span><span class="m">2024</span>-12-31T23:59:59
 </pre></div>
 </div>
 <p>Where <code class="docutils literal notranslate"><span class="pre">start=</span></code> and <code class="docutils literal notranslate"><span class="pre">end=</span></code> can be changed depending on the desired period of time.</p>
@@ -460,8 +471,8 @@ Some useful online resources:<ul class="simple">
 <h3>SMB/CIFS exported filesystems<a class="headerlink" href="#smb-cifs-exported-filesystems" title="Permalink to this heading"></a></h3>
 <p>One of the simple and convenient ways to control and process data based on HPC is mounting. Mounting means that user attaches his directory placed at HPC to a directory on his computer and can process files as if they were on this computer. These can be accessed from within university or from <a class="reference external" href="https://eduvpn.taltech.ee/vpn-user-portal/home">EduVPN</a>.</p>
 <p>Each user automatically has a directory within <code class="docutils literal notranslate"><span class="pre">smbhome</span></code>. It does not match with <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> directory, so calculations should be initially done at <code class="docutils literal notranslate"><span class="pre">smbhome</span></code> directory to prevent copying or files needed should be copied from <code class="docutils literal notranslate"><span class="pre">home</span></code> directory to the <code class="docutils literal notranslate"><span class="pre">smbhome</span></code> directory by commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>pwd	### look path to the file 
-cp path_to_your_file/your_file /gpfs/mariana/smbhome/$USER/	### copying
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="nb">pwd</span><span class="w">    </span><span class="c1">### look path to the file </span>
+<span class="w">    </span>cp<span class="w"> </span>path_to_your_file/your_file<span class="w"> </span>/gpfs/mariana/smbhome/<span class="nv">$USER</span>/<span class="w">    </span><span class="c1">### copying</span>
 </pre></div>
 </div>
 <p>To get a directory for group access, please contact us (a group and a directory need to be created).</p>
@@ -509,13 +520,13 @@ cp path_to_your_file/your_file /gpfs/mariana/smbhome/$USER/	### copying
 <h4>Linux access<a class="headerlink" href="#linux-access" title="Permalink to this heading"></a></h4>
 <p>On Linux with GUI Desktop, the shares can be accessed with the nautilus browser.</p>
 <p>From commandline, the shares can be mounted as follows:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">dbus</span><span class="o">-</span><span class="n">run</span><span class="o">-</span><span class="n">session</span> <span class="n">bash</span>
-<span class="n">gio</span> <span class="n">mount</span> <span class="n">smb</span><span class="p">:</span><span class="o">//</span><span class="n">smb</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span><span class="o">/</span><span class="n">smbhome</span><span class="o">/</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>dbus-run-session<span class="w"> </span>bash
+<span class="w">    </span>gio<span class="w"> </span>mount<span class="w"> </span>smb://smb.hpc.taltech.ee/smbhome/
 </pre></div>
 </div>
 <p>you will be asked for “User” (which is your UniID), “Domain” (which is “INTRA”), and your password.</p>
 <p>To disconnect from the share, unmount with</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">gio</span> <span class="n">mount</span> <span class="o">-</span><span class="n">u</span> <span class="n">smb</span><span class="p">:</span><span class="o">//</span><span class="n">smb</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span><span class="o">/</span><span class="n">smbhome</span><span class="o">/</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>gio<span class="w"> </span>mount<span class="w"> </span>-u<span class="w"> </span>smb://smb.hpc.taltech.ee/smbhome/
 </pre></div>
 </div>
 </section>
