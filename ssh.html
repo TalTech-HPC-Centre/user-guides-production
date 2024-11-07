@@ -85,13 +85,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p><span style="color:red">not changed to rocky yet</span></p>
-<section id="getting-ssh-keys-to-work">
+  <section id="getting-ssh-keys-to-work">
 <h1>Getting SSH keys to work<a class="headerlink" href="#getting-ssh-keys-to-work" title="Permalink to this heading"></a></h1>
+<p>SSH key fingerprint is a security feature for easy identification/verification of the host, user is connecting to. This option allows to connect to the server without a password. On first connect, user is shown a fingerprint of a host-key, and asked if it should be added to the list of known hosts.</p>
+<p>Please compare the fingerprint to the ones below, if one matches, the host can be added, if the fingerprint does not match, then there is a problem (e.g. man-in-the-middle-attack).<details><summary>SSH host keys of our servers</summary></p>
+<p><strong>base.hpc.taltech.ee</strong></p>
+<ul class="simple">
+<li><p>ECDSA SHA256:OEfQiOB/eIG8hYoQ25sQk9T5tx9EtQbhi6sNM4C8mME</p></li>
+<li><p>ED25519 SHA256:t0CSTU0AnSsJThzuM68tucrcfnn2wLKabjSnuRKX8Yc</p></li>
+<li><p>RSA SHA256:qYrmOw/YN7wf640yBHADX3wnAOPu0OOXlcu4LKBxzG8</p></li>
+</ul>
+<p>.</p>
+<p><strong>amp.hpc.taltech.ee</strong></p>
+<ul class="simple">
+<li><p>ECDSA SHA256:yl6+VaKow6qDZAXL3rQY8+3d3pcH0kYg7MjGgNVTWZs</p></li>
+<li><p>ED25519 SHA256:YOjtpcEL2+AWm6vDFjVl0znYuQPMSVCkyFGvdO5fm8o</p></li>
+<li><p>RSA SHA256:4aaOxumH1ATNfiIA4mZSNMefvxfdFm5zZoUj6VR7TYo</p></li>
+</ul>
+<p>.</p>
+<p><strong>viz.hpc.taltech.ee</strong></p>
+<ul class="simple">
+<li><p>ECDSA SHA256:z2/bxleZ3T3vErkg4C7kvDPKKEU0qaoR8bL29EgMfGA</p></li>
+<li><p>ED25519 SHA256:9zRBmS3dxD7BNISZKwg6l/2+6p4HeqlOhA4OMBjD9mk</p></li>
+<li><p>RSA SHA256:Q6NDm88foRVTKtEAEexcRqPqMQNGUzf3rQdetBympPg</details></p></li>
+</ul>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="generationg-ssh-keys">
-<h2>Generationg  SSH keys<a class="headerlink" href="#generationg-ssh-keys" title="Permalink to this heading"></a></h2>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="generating-ssh-keys">
+<h2>Generating  SSH keys<a class="headerlink" href="#generating-ssh-keys" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>In Linux and macOS SSH keys can be generated in cmd by command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span> <span class="o">-</span><span class="n">t</span> <span class="n">rsa</span>

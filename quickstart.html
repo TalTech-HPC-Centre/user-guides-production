@@ -51,10 +51,7 @@
 <li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Quickstart: Cluster</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#accessing-the-cluster">Accessing the cluster</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#ssh-fingerprints-of-host-keys"><em>SSH fingerprints of host-keys</em></a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#accessing-the-cluster">Accessing the cluster</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#structure-and-file-tree">Structure and file tree</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-jobs-with-slurm">Running jobs with SLURM</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#slurm-accounts">SLURM accounts</a></li>
@@ -127,57 +124,29 @@
 <p><strong>NB! To access the cluster, user must have an active <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994346/Uni-ID+ehk+Digitaalne+identiteet">Uni-ID account</a>.</strong> For people who are neither students nor employees of Taltech <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994346/Uni-ID+ehk+Digitaalne+identiteet#External-UNI-ID">Uni-ID non-contractual account</a> should be created by the head of a structural unit.</p>
 <p><strong>To get access to HPC contact us by email (hpcsupport&#64;taltech.ee) or <a class="reference external" href="https://taltech.atlassian.net/servicedesk/customer/portal/18">Taltech portal</a>.</strong> We need the following information: uni-ID, department, project that covers <a class="reference external" href="https://docs.hpc.taltech.ee/#billing">costs</a>.</p>
 <p>The login-node of the cluster can be reached by SSH. SSH (the Secure SHell) is available using the command <code class="docutils literal notranslate"><span class="pre">ssh</span></code> in <strong>Linux/Unix, Mac</strong> and <strong>Windows-10.</strong>  A guide for Windows users using PuTTY (an alternative SSH using a graphical user interface (GUI)) is <a class="reference internal" href="putty.html"><span class="doc">here</span></a>.</p>
-<p>For accessing the cluster <strong>base.hpc.taltech.ee</strong> use command:</p>
+<p>For accessing the cluster <strong>base.hpc.taltech.ee</strong> use desktop session on <a class="reference external" href="https://ondemand.hpc.taltech.ee">https://ondemand.hpc.taltech.ee</a></p>
+<div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
+</div><p>more about OnDemand sessions can be found <a class="reference external" href="/ondemand">here</a>.</p>
+<p>Cluster can be also accessed by ssh command:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
 </pre></div>
 </div>
 <p><em><strong>where uni-ID should be changed to user’s uni-ID.</strong></em></p>
-<p>The cluster is accessible from inside the university and from major Estonian network providers. If you are traveling (or not on one of the major networks), the access requires <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994267/Kaug+hendus+FortiClient+VPN+Remote+connection+with+FortiClient+VPN">FortiVPN</a> (with previously shown command) or a two-step login using a jump-host:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">l</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@intra</span><span class="o">.</span><span class="n">ttu</span><span class="o">.</span><span class="n">ee</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@proksi</span><span class="o">.</span><span class="n">intra</span><span class="o">.</span><span class="n">ttu</span><span class="o">.</span><span class="n">ee</span>
-<span class="n">ssh</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
-</pre></div>
-</div>
-<p><em>where all uni-ID should be changed to user’s uni-ID.</em></p>
+<p>The cluster is accessible from inside the university and from major Estonian network providers. If you are traveling (or not on one of the major networks), the access requires <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994267/Kaug+hendus+FortiClient+VPN+Remote+connection+with+FortiClient+VPN">FortiVPN</a> (with OnDemand session or  previously shown command).</p>
 <p>For using graphical applications add the <code class="docutils literal notranslate"><span class="pre">-X</span></code> switch to the SSH command, and for GLX (X Window System) forwarding additionally the <code class="docutils literal notranslate"><span class="pre">-Y</span></code> switch, so to be able to start a GUI program that uses GLX the connection command would be:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">X</span> <span class="o">-</span><span class="n">Y</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
 </pre></div>
 </div>
-<p><em><strong>NB!</strong></em> <strong>The login-node is for some light interactive analysis. For heavy computations, request a (interactive) session on a compute node with the resource manager <a class="reference external" href="https://docs.hpc.taltech.ee/quickstart.html#running-jobs-with-the-slurm">SLURM</a> or submit job for execution by SLURM sbatch script!</strong></p>
-<p><strong>We strongly recommend to use SSH-keys for logging to the cluster.</strong></p>
-<section id="ssh-fingerprints-of-host-keys">
-<h3><em>SSH fingerprints of host-keys</em><a class="headerlink" href="#ssh-fingerprints-of-host-keys" title="Permalink to this heading"></a></h3>
-<p>SSH key fingerprint is a security feature for easy identification/verification of the host, user is connecting to. This option allows to connect to the server without a password. On first connect, user is shown a fingerprint of a host-key, and asked if it should be added to the list of known hosts.</p>
-<p>Please compare the fingerprint to the ones below, if one matches, the host can be added, if the fingerprint does not match, then there is a problem (e.g. man-in-the-middle-attack).<details><summary>SSH host keys of our servers</summary></p>
-<p><strong>base.hpc.taltech.ee</strong></p>
-<ul class="simple">
-<li><p>ECDSA SHA256:OEfQiOB/eIG8hYoQ25sQk9T5tx9EtQbhi6sNM4C8mME</p></li>
-<li><p>ED25519 SHA256:t0CSTU0AnSsJThzuM68tucrcfnn2wLKabjSnuRKX8Yc</p></li>
-<li><p>RSA SHA256:qYrmOw/YN7wf640yBHADX3wnAOPu0OOXlcu4LKBxzG8</p></li>
-</ul>
-<p>.</p>
-<p><strong>amp.hpc.taltech.ee</strong></p>
-<ul class="simple">
-<li><p>ECDSA SHA256:yl6+VaKow6qDZAXL3rQY8+3d3pcH0kYg7MjGgNVTWZs</p></li>
-<li><p>ED25519 SHA256:YOjtpcEL2+AWm6vDFjVl0znYuQPMSVCkyFGvdO5fm8o</p></li>
-<li><p>RSA SHA256:4aaOxumH1ATNfiIA4mZSNMefvxfdFm5zZoUj6VR7TYo</p></li>
-</ul>
-<p>.</p>
-<p><strong>viz.hpc.taltech.ee</strong></p>
-<ul class="simple">
-<li><p>ECDSA SHA256:z2/bxleZ3T3vErkg4C7kvDPKKEU0qaoR8bL29EgMfGA</p></li>
-<li><p>ED25519 SHA256:9zRBmS3dxD7BNISZKwg6l/2+6p4HeqlOhA4OMBjD9mk</p></li>
-<li><p>RSA SHA256:Q6NDm88foRVTKtEAEexcRqPqMQNGUzf3rQdetBympPg</details></p></li>
-</ul>
-<p><a class="reference internal" href="ssh.html"><span class="doc">How to get SSH keys</span></a>.</p>
+<p><em><strong>NB!</strong></em> <strong>The login-node is for some light interactive analysis. For heavy computations, request a (interactive) session on a compute node with the resource manager <a class="reference external" href="/quickstart.md#running-jobs-with-the-slurm">SLURM</a> or submit job for execution by SLURM sbatch script!</strong></p>
+<p><strong>We strongly recommend to use SSH-keys for logging to the cluster with ssh command.</strong> <a class="reference internal" href="ssh.html"><span class="doc">How to get SSH keys</span></a>.</p>
 <br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-</section>
 <section id="structure-and-file-tree">
 <h2>Structure and file tree<a class="headerlink" href="#structure-and-file-tree" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>By accessing the cluster, the user gets into his home directory or <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> (<code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/home/$USER/</span></code>).</p>
+<p>By accessing the cluster, the user gets into home directory or <code class="docutils literal notranslate"><span class="pre">$HOME</span></code> (<code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/home/$USER/</span></code>).</p>
 <p>In the home directory, the user can create, delete, and overwrite files and perform calculations (if slurm script does not force program to use <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory). The home directory is limited in size of 500 GB and backups are performed once per week.</p>
 <p>The home directory can be accessed from console or by GUI programs, but it cannot be mounted. For mounting was created special <code class="docutils literal notranslate"><span class="pre">smbhome</span></code> and <code class="docutils literal notranslate"><span class="pre">smbgroup</span></code> folders (<code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/smbhome/$USER/</span></code> and <code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/smbgroup/</span></code>, respectively). More about <code class="docutils literal notranslate"><span class="pre">smb</span></code> folders can be found <a class="reference external" href="https://docs.hpc.taltech.ee/quickstart.html#smb-cifs-exported-filesystems">here</a>.</p>
 <p>Some programs and scripts suppose that files will be transfer to <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory at compute node and calculations will be done there. If job will be killed, for example due  to the time limit back transfer will not occur. In this case, user needs to know at which node this job was running (see <code class="docutils literal notranslate"><span class="pre">slurm-$job_id.stat</span></code>), to connect to exactly this node (in example it is green11). <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory will be in <code class="docutils literal notranslate"><span class="pre">/state/partition1/</span></code> and corresponds to jobID number.</p>
@@ -194,7 +163,7 @@
 <h2>Running jobs with SLURM<a class="headerlink" href="#running-jobs-with-slurm" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>SLURM is a management and job scheduling system at Linux clusters. SLURM quick reference can be found <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">here</a>.</p>
-<p>Examples of slurm scripts are usually given on the program’s page with some recommendations for optimal use of resources for this particular program. List of the programs installed at HPC is given on our <a class="reference internal" href="software.html"><span class="doc">software page</span></a>. At software page or program’s page also can be found information about licenses, since programs installed at HPC have varying licence agreement. To use some licensed programs (for example, Gaussian), the user must be added to the appropriate group. For this contact us by email (hpcsupport&#64;taltech.ee) or <a class="reference external" href="https://taltech.atlassian.net/servicedesk/customer/portal/18">Taltech portal</a>.</p>
+<p>Examples of slurm scripts are usually given at the program’s page with some recommendations for optimal use of resources for this particular program. List of the programs installed at HPC is given on our <a class="reference internal" href="software.html"><span class="doc">software page</span></a>.</p>
 <div class="simple1">
 The most often used SLURM commands are:<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">srun</span></code> - to start a session or an application (in real time)</p></li>
