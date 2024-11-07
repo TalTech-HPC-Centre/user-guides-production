@@ -128,13 +128,13 @@
 <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
 </div><p>more about OnDemand sessions can be found <a class="reference external" href="/ondemand">here</a>.</p>
 <p>Cluster can be also accessed by ssh command:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>uni-ID@base.hpc.taltech.ee
 </pre></div>
 </div>
 <p><em><strong>where uni-ID should be changed to user’s uni-ID.</strong></em></p>
 <p>The cluster is accessible from inside the university and from major Estonian network providers. If you are traveling (or not on one of the major networks), the access requires <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994267/Kaug+hendus+FortiClient+VPN+Remote+connection+with+FortiClient+VPN">FortiVPN</a> (with OnDemand session or  previously shown command).</p>
 <p>For using graphical applications add the <code class="docutils literal notranslate"><span class="pre">-X</span></code> switch to the SSH command, and for GLX (X Window System) forwarding additionally the <code class="docutils literal notranslate"><span class="pre">-Y</span></code> switch, so to be able to start a GUI program that uses GLX the connection command would be:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">X</span> <span class="o">-</span><span class="n">Y</span> <span class="n">uni</span><span class="o">-</span><span class="n">ID</span><span class="nd">@base</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-X<span class="w"> </span>-Y<span class="w"> </span>uni-ID@base.hpc.taltech.ee
 </pre></div>
 </div>
 <p><em><strong>NB!</strong></em> <strong>The login-node is for some light interactive analysis. For heavy computations, request a (interactive) session on a compute node with the resource manager <a class="reference external" href="/quickstart.md#running-jobs-with-the-slurm">SLURM</a> or submit job for execution by SLURM sbatch script!</strong></p>
@@ -495,13 +495,13 @@ cp path_to_your_file/your_file /gpfs/mariana/smbhome/$USER/	### copying
 <section id="windows-access">
 <h4>Windows access<a class="headerlink" href="#windows-access" title="Permalink to this heading"></a></h4>
 <p>The shares can be found using the Explorer “Map Network Drive”.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">server</span> <span class="o">&gt;&gt;&gt;</span> \\<span class="n">smb</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>\<span class="n">smbhome</span>
-<span class="n">username</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">INTRA</span>\<span class="o">&lt;</span><span class="n">uni</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">server</span> <span class="o">&gt;&gt;&gt;</span> \\<span class="n">smb</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>\<span class="n">smbhome</span>
+    <span class="n">username</span> <span class="o">&gt;&gt;&gt;</span> <span class="n">INTRA</span>\<span class="o">&lt;</span><span class="n">uni</span><span class="o">-</span><span class="nb">id</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 <p>From Powershell:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">net</span> <span class="n">use</span> \\<span class="n">smb</span><span class="o">.</span><span class="n">hpc</span><span class="o">.</span><span class="n">taltech</span><span class="o">.</span><span class="n">ee</span>\<span class="n">smbhome</span> <span class="o">/</span><span class="n">user</span><span class="p">:</span><span class="n">INTRA</span>\<span class="n">uni</span><span class="o">-</span><span class="nb">id</span>
- <span class="n">get</span><span class="o">-</span><span class="n">smbconnection</span>
+<div class="highlight-powershell notranslate"><div class="highlight"><pre><span></span><span class="n">net</span> <span class="n">use</span> <span class="p">\\</span><span class="n">smb</span><span class="p">.</span><span class="n">hpc</span><span class="p">.</span><span class="n">taltech</span><span class="p">.</span><span class="n">ee</span><span class="p">\</span><span class="n">smbhome</span> <span class="p">/</span><span class="n">user</span><span class="p">:</span><span class="n">INTRA</span><span class="p">\</span><span class="n">uni-id</span>
+<span class="nb">get-smbconnection</span>
 </pre></div>
 </div>
 </section>
