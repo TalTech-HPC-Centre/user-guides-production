@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OnDemand.md &mdash; HPC user-guides 2024 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #E4067E" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            HPC user-guides
+              <img src="_static/TalTech_Gradient-200px.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
+<li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Courses and introductions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Module environment (lmod)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="software.html">Software packages</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Available MPI versions (and comparison)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="performance.html">Performance</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiling.html">Profiling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="visualization.html">Visualization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gpu.html">GPU-servers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="singularity.html">Containers (Singularity &amp; Docker)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="acknowledgement.html">Acknowledgement</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: #E4067E" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">HPC user-guides</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">OnDemand.md</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/ondemand.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ondemand-md">
+<h1>OnDemand.md<a class="headerlink" href="#ondemand-md" title="Permalink to this heading"></a></h1>
+<p>OnDemand is a graphical user interface that allows access to HPC via a web browser. Within the OnDemand environment users can access to a HPC files, submit jobs to a cluster, monitor jobs and HPS resources, run interactive applications like Jupyter.</p>
+<p>The default desktop environment is xfce, which is configurable, lightweight and fast.</p>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="ondemand-desktop-on-any-node-and-cpu">
+<h2>OnDemand Desktop on any node and CPU<a class="headerlink" href="#ondemand-desktop-on-any-node-and-cpu" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line. To do that:</p>
+<ol>
+<li><p>Choose “TalTech HPC Desktop”.</p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
+ </div></li>
+<li><p>Set up and launch an interactive desktop (1 core and 1 GB of memory is usually enough if no calculations are planned).</p>
+ <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-2" src="_images/ondemand-2.png" /></p>
+ </div><p><em><strong>NB!</strong></em> <em>Check and your account.</em></p>
+</li>
+<li><p>Firstly, your request will be put into a queue and this picture will appear.</p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-3" src="_images/ondemand-3.png" /></p>
+ </div></li>
+<li><p>When needed resources will become available, your session will start and this picture will appear.</p>
+<p>We recommend to use default settings for “Compression” and “Image Quality”, unless you require high-quality screenshots.</p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-4" src="_images/ondemand-4.png" /></p>
+ </div><p><em><strong>NB!</strong></em> <em>Do not use quality settings “Compression 0” and/or “Image Quality 9”, this will cause a zlib error message. The message box can be removed by reloading the browser tab.</em></p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="error" src="_images/ondemand-zlib-error.png" /></p>
+ </div></li>
+<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
+<p>Will appear your HPC Desktop, where user can open XTerminal.</p>
+ <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-5" src="_images/ondemand-5.png" /></p>
+ </div></li>
+<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
+<p>Load environment and program needed and start vizualization. More detailed instructions on environment and program loading are given below.</p>
+ <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-6" src="_images/ondemand-6.png" /></p>
+ </div></li>
+</ol>
+<section id="available-visualization-software-on-compute-nodes">
+<h3><em>Available visualization software on compute nodes</em><a class="headerlink" href="#available-visualization-software-on-compute-nodes" title="Permalink to this heading"></a></h3>
+<p>Program from a list below and its environment can be loaded by:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
+<span class="n">module</span> <span class="n">load</span> <span class="o">&lt;</span><span class="n">program</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p><em>where <strong>program</strong> must be written in <strong>lowercase letters</strong></em></p>
+<ul class="simple">
+<li><p>ParaView</p></li>
+<li><p>VisIt</p></li>
+</ul>
+<!-- -   COVISE --><ul class="simple">
+<li><p>Py-MayaVi</p></li>
+</ul>
+<!-- -   OpenDX --><ul class="simple">
+<li><p>Molden</p></li>
+</ul>
+<!-- -   VAPOR --><ul class="simple">
+<li><p>VMD</p></li>
+<li><p>Ovito</p></li>
+<li><p>Ospray (raytracer)</p></li>
+<li><p>PoVray (raytracer)</p></li>
+</ul>
+<br><p>Programs are run by corresponding names in lowercase letters: <strong>paraview</strong> / <strong>visit</strong> / <strong>vmd</strong>.</p>
+<section id="gaussview-avogadro">
+<h4>GaussView &amp; Avogadro<a class="headerlink" href="#gaussview-avogadro" title="Permalink to this heading"></a></h4>
+<p>GaussView can be started by commands:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">gaussview</span>
+<span class="n">gview</span><span class="o">.</span><span class="n">sh</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>To run Avogadro:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">avogadro</span>
+<span class="n">avogadro</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+</section>
+<section id="ondemand-desktop-on-gpu-nodes-hardware-rendering">
+<h2>OnDemand Desktop on GPU nodes (hardware rendering)<a class="headerlink" href="#ondemand-desktop-on-gpu-nodes-hardware-rendering" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
+<p>Requires of course to be submitted to a GPU node and a GPU to be reserved. The nodes are configured in a way that requires EGL rendering, and therefore may require other modules to be loaded (e.g. ParaView).</p>
+<p>Otherwise the Desktop works as the regular (software rendering) one, see above.</p>
+<p>Please note that for most applications software rendering is fast enough, only heavy visulalization, like volume visualization in ParaView, COVISE, VisIt, VMD, Star-CCM+ and Ansys may require the GPU rendering.</p>
+<p><strong>Check using <code class="docutils literal notranslate"><span class="pre">nvtop</span></code> that your application actually uses the GPU!!!</strong></p>
+<section id="paraview-with-egl-acceleration">
+<h3><em>ParaView with EGL acceleration</em><a class="headerlink" href="#paraview-with-egl-acceleration" title="Permalink to this heading"></a></h3>
+<p>It is not possible to have EGL rendering and the OpenGL GUI compiled together, therefore the EGL accelerated <code class="docutils literal notranslate"><span class="pre">pvserver</span></code> and the OpenGL GUI come from different modules and can run on different compute nodes.</p>
+<p>The startup procedure for EGL accelerated rendering is the same as for use of ParaView in distributed mode.</p>
+<ol class="simple">
+<li><p>Start an OnDemand desktop on a GPU node and request a GPU</p></li>
+<li><p>Open 2 XTerms</p></li>
+<li><p>in Xterm 1: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">rocky8-spack</span> <span class="pre">paraview/5.12.1-gcc-10.3.0-dotq</span></code> and start the ParaView GUI <code class="docutils literal notranslate"><span class="pre">paraview</span></code></p></li>
+<li><p>in Xterm 2: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">rocky8</span> <span class="pre">paraview/5.12.1-egl</span></code> and start the ParaView server <code class="docutils literal notranslate"><span class="pre">pvserver</span></code> (alternatively, you could ssh into base and start a separate job on a gpu node with srun or sbatch)</p></li>
+<li><p>in GUI select “Connect” and connect to either localhost:11111 or the gpu node the pvserver runs on, use “manual” connect, then choose “connect”.</p></li>
+</ol>
+<p>A similar procedure can also be used to connect a client running on your desktop computer to the pvserver on the compute node.</p>
+<p>For more explanations, see (ParaView WIKI)[https://www.paraview.org/Wiki/Reverse_connection_and_port_forwarding].</p>
+</section>
+<section id="starccm-with-hardware-rendering">
+<h3><em>StarCCM+ with hardware rendering</em><a class="headerlink" href="#starccm-with-hardware-rendering" title="Permalink to this heading"></a></h3>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>vglrun starccm+ -clientldpreload /usr/lib64/libvglfaker.so -graphics native -rgpu auto  -power -fabric TCP -podkey $YOURPODKEY ...
+</pre></div>
+</div>
+<br>
+<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
+</section>
+<section id="in-situ-visualization-in-preparation">
+<h2><em>In-situ visualization (in preparation)</em><a class="headerlink" href="#in-situ-visualization-in-preparation" title="Permalink to this heading"></a></h2>
+<p>In-situ visualization creates the visualization during the simulation instead of during the postprocesssing phase. The simulation code needs to be connected to in-situ visualization libraries. e.g. Catalyst (ParaView), LibSim (VisIt) and Ascent.</p>
+<p>The following are installed on our cluster</p>
+<ul class="simple">
+<li><p>(Catalyst)[https://www.paraview.org/hpc-insitu/]</p></li>
+<li><p>(Ascent)[https://github.com/Alpine-DAV/ascent]</p></li>
+<li><p>LibSim</p></li>
+<li><p>SENSEI</p></li>
+</ul>
+<p>Ascent on all nodes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">ascent</span>
+</pre></div>
+</div>
+<p>Catalyst on all nodes</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
+<span class="n">module</span> <span class="n">load</span> <span class="n">libcatalyst</span><span class="o">/</span><span class="mf">2.0.0</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="mf">10.3.0</span><span class="o">-</span><span class="n">openblas</span><span class="o">-</span><span class="n">bp26</span>
+</pre></div>
+</div>
+<p>Catalyst can be used within OpenFOAM and (NEK5000)[https://github.com/KTH-Nek5000/InSituPackage] simulations.</p>
+<br>
+<br></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright COPYRIGHT.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
