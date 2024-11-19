@@ -121,23 +121,19 @@
 <h2>Accessing the cluster<a class="headerlink" href="#accessing-the-cluster" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p><strong>NB! To access the cluster, user must have an active <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994346/Uni-ID+ehk+Digitaalne+identiteet">Uni-ID account</a>.</strong> For people who are neither students nor employees of Taltech <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994346/Uni-ID+ehk+Digitaalne+identiteet#External-UNI-ID">Uni-ID non-contractual account</a> should be created by the head of a structural unit.</p>
-<p><strong>To get access to HPC contact us by email (hpcsupport&#64;taltech.ee) or <a class="reference external" href="https://taltech.atlassian.net/servicedesk/customer/portal/18">Taltech portal</a>.</strong> We need the following information: uni-ID, department, project that covers <a class="reference external" href="https://docs.hpc.taltech.ee/#billing">costs</a>.</p>
-<p>The login-node of the cluster can be reached by SSH. SSH (the Secure SHell) is available using the command <code class="docutils literal notranslate"><span class="pre">ssh</span></code> in <strong>Linux/Unix, Mac</strong> and <strong>Windows-10.</strong>  A guide for Windows users using PuTTY (an alternative SSH using a graphical user interface (GUI)) is <a class="reference internal" href="putty.html"><span class="doc">here</span></a>.</p>
-<p>For accessing the cluster <strong>base.hpc.taltech.ee</strong> use desktop session on <a class="reference external" href="https://ondemand.hpc.taltech.ee">https://ondemand.hpc.taltech.ee</a></p>
-<div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
-</div><p>more about OnDemand sessions can be found <a class="reference external" href="/ondemand">here</a>.</p>
-<p>Cluster can be also accessed by ssh command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>uni-ID@base.hpc.taltech.ee
-</pre></div>
-</div>
-<p><em><strong>where uni-ID should be changed to user’s uni-ID.</strong></em></p>
-<p>The cluster is accessible from inside the university and from major Estonian network providers. If you are traveling (or not on one of the major networks), the access requires <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994267/Kaug+hendus+FortiClient+VPN+Remote+connection+with+FortiClient+VPN">FortiVPN</a> (with OnDemand session or  previously shown command).</p>
-<p>For using graphical applications add the <code class="docutils literal notranslate"><span class="pre">-X</span></code> switch to the SSH command, and for GLX (X Window System) forwarding additionally the <code class="docutils literal notranslate"><span class="pre">-Y</span></code> switch, so to be able to start a GUI program that uses GLX the connection command would be:</p>
+<p><strong>To get access to HPC contact us by email (hpcsupport&#64;taltech.ee) or <a class="reference external" href="https://taltech.atlassian.net/servicedesk/customer/portal/18">Taltech portal</a>.</strong> We need the following information: uni-ID, department, project that covers <a class="reference external" href="/index.html#billing">costs</a>.</p>
+<p><strong>The cluster is accessible from inside the university</strong> and from major <strong>Estonian network</strong> providers. If you are traveling (or not in one of the major networks), the access requires <a class="reference external" href="https://taltech.atlassian.net/wiki/spaces/ITI/pages/38994267/Kaug+hendus+FortiClient+VPN+Remote+connection+with+FortiClient+VPN">FortiVPN</a> (for OnDemand session and <code class="docutils literal notranslate"><span class="pre">ssh</span></code> command).</p>
+<p>To access the cluster <strong>base.hpc.taltech.ee</strong> via a browser with a graphical, menu-based environment use desktop session on <a class="reference external" href="https://ondemand.hpc.taltech.ee">https://ondemand.hpc.taltech.ee</a></p>
+<div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand" src="_images/ondemand.png" /></p>
+</div><p><a class="reference internal" href="ondemand.html"><span class="doc">more about OnDemand sessions</span></a>.</p>
+<p>Another option is SSH (the Secure SHell), available by command <code class="docutils literal notranslate"><span class="pre">ssh</span></code> in <strong>Linux/Unix, Mac</strong> and <strong>Windows-10.</strong>  A PuTTY guide for Windows users (an alternative SSH using a graphical user interface (GUI)) is <a class="reference internal" href="putty.html"><span class="doc">here</span></a>.</p>
+<p>For using graphical applications add the <code class="docutils literal notranslate"><span class="pre">-X</span></code>, and for GLX (X Window System) forwarding additionally the <code class="docutils literal notranslate"><span class="pre">-Y</span></code> switch,:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>-X<span class="w"> </span>-Y<span class="w"> </span>uni-ID@base.hpc.taltech.ee
 </pre></div>
 </div>
-<p><em><strong>NB!</strong></em> <strong>The login-node is for some light interactive analysis. For heavy computations, request a (interactive) session on a compute node with the resource manager <a class="reference external" href="/quickstart.md#running-jobs-with-the-slurm">SLURM</a> or submit job for execution by SLURM sbatch script!</strong></p>
-<p><strong>We strongly recommend to use SSH-keys for logging to the cluster with ssh command.</strong> <a class="reference internal" href="ssh.html"><span class="doc">How to get SSH keys</span></a>.</p>
+<p><em><strong>where uni-ID should be changed to user’s uni-ID.</strong></em></p>
+<p><em><strong>NB!</strong></em> <strong>The login-node is for some light interactive analysis.</strong> For heavy computations, request a (interactive) session with the resource manager <a class="reference external" href="/quickstart.html#running-jobs-with-slurm">SLURM</a> or submit job for execution by SLURM sbatch script!**</p>
+<p>We strongly recommend to <strong>use SSH-keys for logging</strong> to the cluster with ssh command. <a class="reference internal" href="ssh.html"><span class="doc">How to get SSH keys</span></a>.</p>
 <br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
@@ -149,8 +145,8 @@
 <p>In the home directory, the user can create, delete, and overwrite files and perform calculations (if slurm script does not force program to use <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory). The home directory is limited in size of 500 GB and backups are performed once per week.</p>
 <p>The home directory can be accessed from console or by GUI programs, but it cannot be mounted. For mounting was created special <code class="docutils literal notranslate"><span class="pre">smbhome</span></code> and <code class="docutils literal notranslate"><span class="pre">smbgroup</span></code> folders (<code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/smbhome/$USER/</span></code> and <code class="docutils literal notranslate"><span class="pre">/gpfs/mariana/smbgroup/</span></code>, respectively). More about <code class="docutils literal notranslate"><span class="pre">smb</span></code> folders can be found <a class="reference external" href="https://docs.hpc.taltech.ee/quickstart.html#smb-cifs-exported-filesystems">here</a>.</p>
 <p>Some programs and scripts suppose that files will be transfer to <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory at compute node and calculations will be done there. If job will be killed, for example due  to the time limit back transfer will not occur. In this case, user needs to know at which node this job was running (see <code class="docutils literal notranslate"><span class="pre">slurm-$job_id.stat</span></code>), to connect to exactly this node (in example it is green11). <code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> directory will be in <code class="docutils literal notranslate"><span class="pre">/state/partition1/</span></code> and corresponds to jobID number.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w"> </span>-w<span class="w"> </span>green11<span class="w"> </span>--pty<span class="w"> </span>bash
-<span class="w">    </span><span class="nb">cd</span><span class="w"> </span>/state/partition1/
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>-w<span class="w"> </span>green11<span class="w"> </span>--pty<span class="w"> </span>bash
+<span class="nb">cd</span><span class="w"> </span>/state/partition1/
 </pre></div>
 </div>
 <p>Please note that the scratch is <em>not</em> shared between nodes, so parallel MPI jobs that span multiple nodes cannot access each other’s scratch files.</p>
@@ -161,92 +157,63 @@
 <section id="running-jobs-with-slurm">
 <h2>Running jobs with SLURM<a class="headerlink" href="#running-jobs-with-slurm" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>SLURM is a management and job scheduling system at Linux clusters. SLURM quick reference can be found <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">here</a>.</p>
-<p>Examples of slurm scripts are usually given at the program’s page with some recommendations for optimal use of resources for this particular program. List of the programs installed at HPC is given on our <a class="reference internal" href="software.html"><span class="doc">software page</span></a>.</p>
+<p>SLURM is a management and job scheduling system at Linux clusters. More about <a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">SLURM quick references</a>.</p>
+<p>Examples of slurm scripts are usually given at the program’s page with some recommendations for optimal use of resources for this particular program. List of the programs installed at HPC is given at our <a class="reference internal" href="software.html"><span class="doc">software page</span></a>.</p>
 <div class="simple1">
 The most often used SLURM commands are:<ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">srun</span></code> - to start a session or an application (in real time)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> - to start a computation using a batch file (submit for later execution)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">squeue</span></code> - to check the load of the cluster and status of own jobs</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">squeue</span></code> - to check the load of the cluster and status of jobs</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sinfo</span></code> - to check the state of the cluster and partitions</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">scancel</span></code> - to delete a submitted job (or stop a running one).</p></li>
 </ul>
 </div>
-<br><p>For more parameters see the man-pages (manual) of the commands <code class="docutils literal notranslate"><span class="pre">srun</span></code>, <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> and <code class="docutils literal notranslate"><span class="pre">squeue</span></code>. For this use the command <code class="docutils literal notranslate"><span class="pre">man</span></code> followed by the program-name whose manual you want to see, e.g.:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>man<span class="w"> </span>srun
+<br><p>For more parameters see the man-pages (manual) of the commands <code class="docutils literal notranslate"><span class="pre">srun</span></code>, <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>, <code class="docutils literal notranslate"><span class="pre">sinfo</span></code> and <code class="docutils literal notranslate"><span class="pre">squeue</span></code>. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>srun
 </pre></div>
 </div>
-<p>Requesting resources with SLURM can be done either with parameters to <code class="docutils literal notranslate"><span class="pre">srun</span></code> or in a batch script invoked by <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
-<div class="simple1">The following defaults are used if not otherwise specified:<ul class="simple">
-<li><p><strong>default memory</strong> – is 1 GB/thread (for larger jobs request more memory)</p></li>
-<li><p><strong>short partition</strong> – <strong>default time limit</strong> is 10 min and  <strong>max time limit</strong> is 4 hours (longer jobs need to be submitted to partitions common, green-ib or gpu partitions)</p></li>
-<li><p><strong>common partition</strong> –  <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days.</p></li>
-<li><p><strong>long partition</strong> – <strong>default time</strong> is 10 min and <strong>time limit</strong> 15 days.</p></li>
-<li><p><strong>green-ib partition</strong> – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days</p></li>
-<li><p><strong>bigmem partition</strong>  – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 8 days</p></li>
-<li><p><strong>gpu partition</strong> – <strong>default time</strong> is 10 min and <strong>max time limit</strong> is 5 days</p></li>
-</ul>
- </div> 
- <br><p><strong>Running an interactive session</strong> longer than default 10 min. (here 1 hour):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w"> </span>-t<span class="w"> </span><span class="m">01</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>
+<p>Requesting resources with SLURM can be done either with parameters to <code class="docutils literal notranslate"><span class="pre">srun</span></code> or in a batch script invoked by <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code>. Unless otherwise specified, 1GB/thread will be used and the job will run for 10 minutes. <a class="reference external" href="/index.html#slurm-partitions">More about partitions and their limits</a>.</p>
+<p><strong>Running an interactive session</strong> longer than default 10 min. (here 1 hour):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>-t<span class="w"> </span><span class="m">01</span>:00:00<span class="w"> </span>--pty<span class="w"> </span>bash<span class="w"> </span>
 </pre></div>
 </div>
 <p>This logs you into one of the compute nodes, there you can load modules and run interactive applications, compile your code, etc.</p>
 <p>With <code class="docutils literal notranslate"><span class="pre">srun</span></code> is reccomended to use CLI (command-line interface) instead of GUI (Graphical user interface) programs if it is possible. For example, use octave-CLI or octave instead of octave-GUI.</p>
 <p><strong>Running a simple non-interactive single process job</strong> that lasts longer than default 4 hours (here 5 hours):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w"> </span>--partition<span class="o">=</span>common<span class="w"> </span>-t<span class="w"> </span><span class="m">05</span>:00:00<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>./a.out
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w"> </span>--partition<span class="o">=</span>common<span class="w"> </span>-t<span class="w"> </span><span class="m">05</span>:00:00<span class="w"> </span>-n<span class="w"> </span><span class="m">1</span><span class="w"> </span>./a.out
 </pre></div>
 </div>
 <p><em><strong>NB!</strong></em> <em>Environment variables for OpenMP are <em>not</em> set automatically, e.g.</em></p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>srun<span class="w">  </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">28</span><span class="w"> </span>./a.out
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>srun<span class="w">  </span>-N<span class="w"> </span><span class="m">1</span><span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">28</span><span class="w"> </span>./a.out
 </pre></div>
 </div>
 <p>would <em>not</em> set <code class="docutils literal notranslate"><span class="pre">OMP_NUM_THREADS</span></code> to 28, this has to be done manually. So usually, for parallel jobs it is recommended to use scripts for <code class="docutils literal notranslate"><span class="pre">sbatch</span></code>.</p>
-<p>Below is given an example of batch slurm script (filename: <code class="docutils literal notranslate"><span class="pre">myjob.slurm</span></code>) with explanation of the commands.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="c1">#!/bin/bash</span>
-<span class="w">    </span><span class="c1">#SBATCH --partition=common    ### Partition</span>
-<span class="w">    </span><span class="c1">#SBATCH --job-name=HelloOMP   ### Job Name           -J</span>
-<span class="w">    </span><span class="c1">#SBATCH --time=00:10:00       ### WallTime           -t</span>
-<span class="w">    </span><span class="c1">#SBATCH --nodes=4             ### Number of Nodes    -N </span>
-<span class="w">    </span><span class="c1">#SBATCH --ntasks-per-node=7   ### Number of tasks (MPI processes)</span>
-<span class="w">    </span><span class="c1">#SBATCH --cpus-per-task=4     ### Number of threads per task (OMP threads)</span>
-<span class="w">    </span><span class="c1">#SBATCH --account=hpcrcf      ### In case of several accounts, specifies account used for job submission</span>
-<span class="w">    </span><span class="c1">#SBATCH --mem-per-cpu=100     ### Min RAM required in MB</span>
-<span class="w">    </span><span class="c1">#SBATCH --array=13-18         ### Array tasks for parameter sweep</span>
+<p>Below is given <strong>an example of batch slurm script</strong> (filename: <code class="docutils literal notranslate"><span class="pre">myjob.slurm</span></code>) with explanation of the commands.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --partition=common    ### Partition</span>
+<span class="c1">#SBATCH --job-name=HelloOMP   ### Job Name           -J</span>
+<span class="c1">#SBATCH --time=00:10:00       ### Time limit         -t</span>
+<span class="c1">#SBATCH --nodes=4             ### Number of Nodes    -N </span>
+<span class="c1">#SBATCH --ntasks-per-node=7   ### Number of tasks (MPI processes)</span>
+<span class="c1">#SBATCH --cpus-per-task=4     ### Number of threads per task (OMP threads)</span>
+<span class="c1">#SBATCH --account=ptoject     ### Essentially your research group</span>
+<span class="c1">#SBATCH --mem-per-cpu=100     ### Min RAM required in MB</span>
+<span class="c1">#SBATCH --array=13-18         ### Array tasks for parameter sweep</span>
 <span class="w">    </span>
 <span class="w">    </span><span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="nv">$SLURM_CPUS_PER_TASK</span><span class="w">    	</span><span class="c1">### setup environment</span>
 <span class="w">    </span>module<span class="w"> </span>load<span class="w"> </span>gcc<span class="w">    					</span><span class="c1">### setup environment</span>
 <span class="w">    </span>./hello_omp<span class="w"> </span><span class="nv">$SLURM_ARRAY_TASK_ID</span><span class="w">    		</span><span class="c1">### only for arrays, setup output files with system information</span>
+
 <span class="w">    </span>srun<span class="w"> </span>-n<span class="w"> </span><span class="m">28</span><span class="w"> </span>./hello_mpi<span class="w">     			</span><span class="c1">### run program</span>
 </pre></div>
 </div>
-<p>In this example are listed some of the more common submission parameters. There are many more possible job-submission options, moreover, some of the options listed above  are not useful to apply together. An explanation of the variables used inside SLURM/SBATCH can be found <a class="reference external" href="https://slurm.schedmd.com/sbatch.html#lbAJ">here</a>. In contrast to e.g. GridEngine, SLURM allows fine-grained resource requests, using parameters like <code class="docutils literal notranslate"><span class="pre">--ntasks-per-core</span></code> or <code class="docutils literal notranslate"><span class="pre">--ntasks-per-node</span></code>.</p>
-<div class="simple1"> 
- <a href="https://docs.hpc.taltech.ee/slurm_example.html">An example script for submitting</a>:<ul class="simple">
-<li><p>a single process job</p></li>
-<li><p>an OpenMP parallel job</p></li>
-<li><p>an MPI parallel job (OpenFOAM)</p></li>
-<li><p>an array (parameter sweep) job</p></li>
-<li><p>a GPU job</p></li>
-<li><p>a job using the scratch partition (sequential or OpenMP parallel)</p></li>
-</ul>
-</div> 
-<br><p>The job is then submitted to SLURM by</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">    </span>sbatch<span class="w"> </span>myjob.slurm
+<p>In this example are listed some of the most common submission parameters. There are many other possible options, moreover, some of the options listed above  are not useful to apply together. Here can be found descriptions of the <a class="reference external" href="https://slurm.schedmd.com/sbatch.html#lbAJ">variables used inside SLURM/SBATCH</a> and <strong><a class="reference external" href="/slurm_example.html">more examples of SLURM scripts</a></strong> with more detailed explanations.</p>
+<p>The job is then submitted to SLURM by</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>myjob.slurm
 </pre></div>
 </div>
 <p>and will be executed when the requested resources become available.</p>
-<p>Output of applications and error messages are by default written to a <code class="docutils literal notranslate"><span class="pre">slurm-$job_id.out</span></code> file. More about SLURM finished job statistics can be found <a class="reference internal" href="slurm_statistics.html"><span class="doc">here</span></a>.</p>
-<div class="simple1">
-Some useful online resources:<ul class="simple">
-<li><p><a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">SLURM scheduler workload manager</a></p></li>
-<li><p>Victor Eijkhout: Introduction to High-Performance Scientific Computing <a href="https://doi.org/10.5281/zenodo.49897"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.49897.svg" alt="DOI"></a></p></li>
-<li><p><a class="reference external" href="http://cnx.org/content/col11136/1.5/">Charles Severance, Kevin Dowd: High Performance Computing</a></p></li>
-<li><p><a class="reference external" href="https://www.openmp.org/">OpenMP standard</a></p></li>
-<li><p><a class="reference external" href="https://www.mpi-forum.org/">MPI standard</a></p></li>
-<li><p><a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">SLURM Quick Reference (Cheat Sheet)</a></p></li>
-</ul>
- </div>  <br>
+<p>Output of applications and error messages are by default written to a <code class="docutils literal notranslate"><span class="pre">slurm-$job_id.out</span></code> file. <a class="reference internal" href="slurm_statistics.html"><span class="doc">More about SLURM finished job statistics</span></a>.</p>
 <br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
@@ -255,9 +222,13 @@ Some useful online resources:<ul class="simple">
 <h2>SLURM accounts<a class="headerlink" href="#slurm-accounts" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
 <p>In SLURM exist accounts for billing, these are different from the login account!</p>
-<p>Each user has his/her own personal SLURM-account, which will have a monthly limit and at least one project account for larger calculations.</p>
-<p>SLURM user-accounts start with <code class="docutils literal notranslate"><span class="pre">user_</span></code> and project accounts with <code class="docutils literal notranslate"><span class="pre">project_</span></code> and course accounts with <code class="docutils literal notranslate"><span class="pre">course_</span></code>, followed by uniID/projectID/courseID. You can check which SLURM accounts you belong to, by <code class="docutils literal notranslate"><span class="pre">sacctmgr</span> <span class="pre">show</span> <span class="pre">associations</span> <span class="pre">format=account%30,user%30</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">uniID</span></code> . Currently (almost) all users belong to the SLURM-account “vaikimisi” (default), it is possible to submit jobs under this account, especially if no <code class="docutils literal notranslate"><span class="pre">user_</span></code> or project account has been created for you yet, however, “vaikimisi” will be discontinued in the near future.</p>
-<p>When submitting a job, it is important to use the correct SLURM-account <code class="docutils literal notranslate"><span class="pre">--account=SLURM-ACCOUNT</span></code>, as this is connected to the financial source.</p>
+<p>Each user has his/her own personal SLURM-account, which will have a small monthly limit.  For larger calculations user should have at least one project account. SLURM user-accounts start with <code class="docutils literal notranslate"><span class="pre">user_</span></code> and project accounts with <code class="docutils literal notranslate"><span class="pre">project_</span></code> and course accounts with <code class="docutils literal notranslate"><span class="pre">course_</span></code>, followed by uniID/projectID/courseID.</p>
+<p>You can check which SLURM accounts you belong to, by:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sacctmgr<span class="w"> </span>show<span class="w"> </span>associations<span class="w"> </span><span class="nv">format</span><span class="o">=</span>account%30,user%30<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span><span class="nv">$USER</span>
+</pre></div>
+</div>
+<p>Currently (almost) all users belong to the SLURM-account “vaikimisi” (default), it is possible to submit jobs under this account, especially if no <code class="docutils literal notranslate"><span class="pre">user_</span></code> or project account has been created for you yet, however, “vaikimisi” will be discontinued in the near future.</p>
+<p>When submitting a job, <strong>it is important to use the correct SLURM-account</strong> <code class="docutils literal notranslate"><span class="pre">--account=SLURM-ACCOUNT</span></code>, as this is connected to the financial source.</p>
 <br> 
 <br>
 <br>

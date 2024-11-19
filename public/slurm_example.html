@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Examples of slurm scripts for submitting jobs &mdash; HPC user-guides 2024 documentation</title>
+  <title>Examples of slurm scripts &mdash; HPC user-guides 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
@@ -75,7 +75,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Examples of slurm scripts for submitting jobs</li>
+      <li class="breadcrumb-item active">Examples of slurm scripts</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/slurm_example.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,33 +85,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <p><span style="color:red">not changed to rocky yet</span></p>
-<section id="examples-of-slurm-scripts-for-submitting-jobs">
-<h1>Examples of slurm scripts for submitting jobs<a class="headerlink" href="#examples-of-slurm-scripts-for-submitting-jobs" title="Permalink to this heading"></a></h1>
+  <section id="examples-of-slurm-scripts">
+<h1>Examples of slurm scripts<a class="headerlink" href="#examples-of-slurm-scripts" title="Permalink to this heading"></a></h1>
+<div class="simple1">
+<b>Some useful online resources:</b><ul class="simple">
+<li><p><a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">SLURM scheduler workload manager</a></p></li>
+<li><p>Victor Eijkhout: Introduction to High-Performance Scientific Computing <a href="https://doi.org/10.5281/zenodo.49897"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.49897.svg" alt="DOI"></a></p></li>
+<li><p><a class="reference external" href="http://cnx.org/content/col11136/1.5/">Charles Severance, Kevin Dowd: High Performance Computing</a></p></li>
+<li><p><a class="reference external" href="https://www.openmp.org/">OpenMP standard</a></p></li>
+<li><p><a class="reference external" href="https://www.mpi-forum.org/">MPI standard</a></p></li>
+<li><p><a class="reference external" href="https://slurm.schedmd.com/pdfs/summary.pdf">SLURM Quick Reference (Cheat Sheet)</a></p></li>
+</ul>
+ </div> <br>
 <br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="a-single-process-job">
-<h2>A single process job<a class="headerlink" href="#a-single-process-job" title="Permalink to this heading"></a></h2>
+<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="a-single-thread-job">
+<h2>A single thread job<a class="headerlink" href="#a-single-thread-job" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>The following script  launches job named bowtie2 using one thread. A directory bowtie2-results will be created where results will be written into bowtie2-%J.log output file (<code class="docutils literal notranslate"><span class="pre">%J</span></code> is a job allocation number and step number in format jobid.stepid).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash 
-#SBATCH --job-name=bowtie2		### job name 
-#SBATCH --output=bowtie2-%J.log  	### output file 
-#SBATCH --ntasks=1			### number of threads   
+<p>The following script sets up the environment for ORCA and runs a job named ORCA_test using one thread and 2GB of memory, with job.inp as an input file. Calculations will be performed in a scratch directory on a node, not in your directory. Results will be written into job.log output file.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
+<span class="c1">#SBATCH --job-name=ORCA_test		### job name </span>
+<span class="c1">#SBATCH --ntasks=1			### number of threads   </span>
+<span class="c1">#SBATCH --mem=2GB			### memory</span>
+<span class="w">  </span>
+<span class="c1">## load ORCA environment </span>
+module<span class="w"> </span>load<span class="w"> </span>rocky8/all
+module<span class="w"> </span>load<span class="w"> </span>orca/5.0.4
+<span class="nb">export</span><span class="w"> </span><span class="nv">orcadir</span><span class="o">=</span>/gpfs/mariana/software/green/Orca/orca_5_0_4_openmpi_411/
+<span class="w">   </span>
+<span class="c1">#Create scratch directory</span>
+<span class="nv">SCRATCH</span><span class="o">=</span>/state/partition1/<span class="nv">$SLURM_JOB_ID</span>
+mkdir<span class="w"> </span>-p<span class="w"> </span><span class="nv">$SCRATCH</span>
+cp<span class="w">  </span><span class="nv">$SLURM_SUBMIT_DIR</span>/*<span class="w"> </span><span class="nv">$SCRATCH</span>/
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$SCRATCH</span>/
+<span class="w">  </span>
+<span class="c1">#Run calculations </span>
+<span class="nv">$orcadir</span>/orca<span class="w"> </span>job.inp<span class="w"> </span>&gt;&gt;<span class="w"> </span>job.log
 
-## load bowtie2 environment 
-module load bowtie2-2.1.0
+<span class="c1">#Copy files back to working directory</span>
+cp<span class="w"> </span><span class="nv">$SCRATCH</span>/*<span class="w"> </span><span class="nv">$SLURM_SUBMIT_DIR</span>
+rm<span class="w"> </span>*tmp*
 
-## creating directory for results 
-mkdir bowtie2-results 
-cd bowtie2-results 
-
-## building bowtie2 index 
-bowtie2-build $BT2_HOME/example/reference/lambda_virus.fa lambda_virus
-
-## aligning against the index, output to eg1.sam file 
-bowtie2 -x lambda_virus -U $BT2_HOME/example/reads/reads_1.fq -S eg1.sam
+<span class="c1">#Clean after yourself</span>
+rm<span class="w"> </span>-rf<span class="w">  </span><span class="nv">$SCRATCH</span>
 </pre></div>
 </div>
 <br>
@@ -123,19 +140,21 @@ bowtie2 -x lambda_virus -U $BT2_HOME/example/reads/reads_1.fq -S eg1.sam
 <hr class="docutils" />
 <p>The following script launches job named HelloOMP using OpenMP. For this job slurm reserves one node and 12 threads. Maximum run time is 10 minutes.</p>
 <span style="color:blue"> 
-Even though it is `--cpus-per-task` slurm reserves threads, not CPU, since  "cpu" in SLURM's language is the smallest unit. </span> <p><strong>Note:</strong> Each thread needs sufficient work to do to make up for the time spent in launching the thread. Therefore it is not useful to run small/short jobs in parallel.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash
-#SBATCH --job-name=HelloOMP		### job name           -J
-#SBATCH --time=00:10:00     		### time limit         -t
-#SBATCH --nodes=1           		### number of nodes    -N 
-#SBATCH --ntasks-per-node=1 		### number of tasks (MPI processes)
-#SBATCH --cpus-per-task=12  		### number of threads per task (OMP threads)
+Even though it is `--cpus-per-task` slurm reserves threads, not CPU, since  "cpu" in SLURM's language is the smallest unit. </span> 
+<br>
+<br><p><strong>Note:</strong> Each thread needs to do enough work to compensate for the time it took to launch it. Therefore it is not useful to run small/short jobs in parallel.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+<span class="c1">#SBATCH --job-name=HelloOMP		### job name           -J</span>
+<span class="c1">#SBATCH --time=00:10:00     		### time limit         -t</span>
+<span class="c1">#SBATCH --nodes=1           		### number of nodes    -N </span>
+<span class="c1">#SBATCH --ntasks-per-node=1 		### number of tasks (MPI processes)</span>
+<span class="c1">#SBATCH --cpus-per-task=12  		### number of threads per task (OMP threads)</span>
 
-## load environment    
-export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
+<span class="c1">## load environment    </span>
+<span class="nb">export</span><span class="w"> </span><span class="nv">OMP_NUM_THREADS</span><span class="o">=</span><span class="nv">$SLURM_CPUS_PER_TASK</span>
 
-## run job
-./hello_omp 
+<span class="c1">## run job</span>
+./hello_omp<span class="w"> </span>
 </pre></div>
 </div>
 <p><strong>NOTE: Parallel does not (necessarily) mean faster!!!</strong> Parallel execution introduces overhead (starting threads, communication)! For optimal execution time and optimal use of resources one needs to test and find the sweet spot.</p>
@@ -153,23 +172,25 @@ export OMP_NUM_THREADS=$SLURM_CPUS_PER_TASK
 <p>It would be possible to request all tasks to be on the same node using the <code class="docutils literal notranslate"><span class="pre">-N</span></code> and <code class="docutils literal notranslate"><span class="pre">--tasks-per-node</span></code> options, this would be useful to make use of the very low latency shared memory communication of MPI (provided the job fits into the RAM of a single node).</p>
 <span style="color:blue"> 
 Flag `-l` in #!/bin/bash row means that settings in /home/user/.bash_profile will be executed.
-</span>  <p><strong>Note:</strong> Each task needs sufficient work to do to make up for the time spent with inter-process communication. Therefore it is not useful to run small/short jobs in parallel.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash -l    
-#SBATCH -n 4     			### number of CPUs 
-#SBATCH -t 10:00:00      		### run time   
-#SBATCH -J openfoam-damBreak     	### job name
-#SBATCH --partition=infiniband		### partition 
+</span>  
+<br>
+<br><p><strong>Note:</strong> Each task needs sufficient work to do to make up for the time spent with inter-process communication. Therefore it is not useful to run small/short jobs in parallel.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l    </span>
+<span class="c1">#SBATCH -n 4     			### number of CPUs </span>
+<span class="c1">#SBATCH -t 10:00:00      		### run time   </span>
+<span class="c1">#SBATCH -J openfoam-damBreak     	### job name</span>
+<span class="c1">#SBATCH --partition=green-ib		### partition </span>
 
-## load environment    
-module load rocks-openmpi
-source /share/apps/OpenFOAM/OpenFOAM-v1912/etc/bashrc
+<span class="c1">## load environment    </span>
+module<span class="w"> </span>load<span class="w"> </span>rocky8-spack
+module<span class="w"> </span>load<span class="w"> </span>openfoam
 
-## run program
-cd $WM_PROJECT_USER_DIR/damBreak/damBreak
+<span class="c1">## run program</span>
+<span class="nb">cd</span><span class="w"> </span><span class="nv">$WM_PROJECT_USER_DIR</span>/damBreak/damBreak
 blockMesh
 decomposePar
 setFields
-mpirun -n $SLURM_NTASKS interFoam -parallel
+mpirun<span class="w"> </span>-n<span class="w"> </span><span class="nv">$SLURM_NTASKS</span><span class="w"> </span>interFoam<span class="w"> </span>-parallel
 reconstructPar
 </pre></div>
 </div>
@@ -222,14 +243,16 @@ reconstructPar
 <hr class="docutils" />
 <span style="color:blue">
 Tis script reserves 10 threads and run array of jobs in range of 13-1800.  The `$SLURM_ARRAY_TASK_ID` variable calls the input files in the given range in turn and data is written in output files arrayjob, which also contain job allocation ID and  job array index number (`-%A` and `-%a`, respectively). 
-</span> <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash 
-#SBATCH --job-name=array-parameter-scan	### job name  
-#SBATCH --output=arrayjob-%A-%a  		### output file 
-#SBATCH --ntasks=10  			    	### number of threads  
-#SBATCH --array=13-1800       		    	### Array tasks for parameter sweep
-
-## run job
-./myarrayjob  $SLURM_ARRAY_TASK_ID
+</span> 
+<br>
+<br><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
+<span class="c1">#SBATCH --job-name=array-parameter-scan	### job name  </span>
+<span class="c1">#SBATCH --output=arrayjob-%A-%a  		### output file </span>
+<span class="c1">#SBATCH --ntasks=10  			    	### number of threads  </span>
+<span class="c1">#SBATCH --array=13-1800       		    	### Array tasks for parameter sweep</span>
+<span class="w">    </span>
+<span class="c1">## run job</span>
+./myarrayjob<span class="w">  </span><span class="nv">$SLURM_ARRAY_TASK_ID</span>
 </pre></div>
 </div>
 <br>
@@ -241,25 +264,25 @@ Tis script reserves 10 threads and run array of jobs in range of 13-1800.  The `
 <hr class="docutils" />
 <p>The GPU scripts can be run only on <strong>amp</strong>.</p>
 <p>The following script reserves 1 gpu (Nvidia A100), uses gpu partition and has time limit 0f 10 minutes.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
 <span class="c1">#SBATCH --job-name=uses-gpu		### job name</span>
 <span class="c1">#SBATCH -p gpu			### use gpu</span>
 <span class="c1">#SBATCH --gres=gpu:A100:1		### specifying the GPU type</span>
 <span class="c1">#SBATCH -t 00:10:00			### time limit </span>
 
 <span class="c1">## run job    </span>
-<span class="o">./</span><span class="n">mygpujob</span>
+./mygpujob
 </pre></div>
 </div>
 <p>This script reserves 4 gpu without specifying the GPU type.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash </span>
 <span class="c1">#SBATCH --job-name=uses-gpu		### job name</span>
 <span class="c1">#SBATCH -p gpu			### use gpu</span>
 <span class="c1">#SBATCH --gres=gpu:4		### number of gpu</span>
 <span class="c1">#SBATCH -t 00:10:00 		### time limit </span>
 
 <span class="c1">## run job    </span>
-<span class="o">./</span><span class="n">mygpujob</span>
+./mygpujob
 </pre></div>
 </div>
 <br>
@@ -271,23 +294,24 @@ Tis script reserves 10 threads and run array of jobs in range of 13-1800.  The `
 <hr class="docutils" />
 <span style="color:blue"> 
 The following script creates a directory named scratch-%x-%j (where -%x is a job name and %j is a jobid of the running job). This scratch directory is done on the scratch partition of the node to provide fast local storage, that does **not** require network. After, slurm script runs the job, and copies the output files back into the permanent home-directory once the job is completed.
-</span>  <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>#!/bin/bash -l
+</span>  
+<br>
+<br><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash -l    </span>
+<span class="c1">#SBATCH -N 1			### number of nodes</span>
+<span class="c1">#SBATCH -t 00:10:00			### time limit  </span>
+<span class="c1">#SBATCH -J using-scratch		### job name</span>
+<span class="w">    </span>
+<span class="c1">## creates scratch scratch directory, copy files from working directory to scratch directory, goes to scratch directory</span>
+mkdir<span class="w"> </span>/state/partition1/scratch-%x-%j
+cp<span class="w"> </span>-r<span class="w"> </span><span class="nv">$HOME</span>/were/input/is/*<span class="w"> </span>/state/partition1/scratch-%x-%j/
+<span class="nb">cd</span><span class="w"> </span>/state/partition1/scratch-%x-%j/
 
-#SBATCH -N 1			### number of nodes
-#SBATCH -t 00:10:00			### time limit  
-#SBATCH -J using-scratch		### job name
-
-## creates scratch scratch directory, copy files from working directory to scratch directory, goes to scratch directory
-mkdir /state/partition1/scratch-%x-%j
-cp -r $HOME/were/input/is/* /state/partition1/scratch-%x-%j/
-cd /state/partition1/scratch-%x-%j/
-
-## run job
+<span class="c1">## run job</span>
 myjob
 
-## copy files from scratch directory to working directory and remove scratch directory
-cp -r /state/partition1/scratch-%x-%j/* $HOME/were/input/is
-rm -rf /state/partition1/scratch-%x-%j
+<span class="c1">## copy files from scratch directory to working directory and remove scratch directory</span>
+cp<span class="w"> </span>-r<span class="w"> </span>/state/partition1/scratch-%x-%j/*<span class="w"> </span><span class="nv">$HOME</span>/were/input/is
+rm<span class="w"> </span>-rf<span class="w"> </span>/state/partition1/scratch-%x-%j
 </pre></div>
 </div>
 <p>Please note that the scratch is <em>not</em> shared between nodes, so parallel MPI jobs that span multiple nodes cannot access each other’s scratch files.</p>
