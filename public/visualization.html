@@ -61,6 +61,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-any-node-and-cpu">OnDemand Desktop on any node and CPU</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#available-visualization-software-on-compute-nodes"><em>Available visualization software on compute nodes</em></a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#gaussview-avogadro">GaussView &amp; Avogadro</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#d-slicer">3D Slicer</a></li>
 </ul>
 </li>
 </ul>
@@ -105,40 +106,15 @@
   <section id="visualization">
 <h1>Visualization<a class="headerlink" href="#visualization" title="Permalink to this heading"></a></h1>
 <p>The recommended way of doing visualizations is now using the <strong>desktop session</strong> on <a class="reference external" href="https://ondemand.hpc.taltech.ee">https://ondemand.hpc.taltech.ee</a>.</p>
-<p>OnDemand is a graphical user interface that allows access to HPC via a web browser. Within the OnDemand environment users can access to a HPC files, submit jobs to a cluster, monitor jobs and HPS resources, run interactive applications like Jupyter.</p>
-<p>The default desktop environment is xfce, which is configurable, lightweight and fast.</p>
+<p>OnDemand is a graphical user interface that allows access to HPC via a web browser. The default desktop environment is xfce, which is configurable, lightweight and fast.</p>
+<p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line.</p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="ondemand-desktop-on-any-node-and-cpu">
 <h2>OnDemand Desktop on any node and CPU<a class="headerlink" href="#ondemand-desktop-on-any-node-and-cpu" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line. To do that:</p>
-<ol>
-<li><p>Choose “TalTech HPC Desktop”.</p>
- <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
- </div></li>
-<li><p>Set up and launch an interactive desktop (1 core and 1 GB of memory is usually enough if no calculations are planned).</p>
- <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-2" src="_images/ondemand-2.png" /></p>
- </div><p><em><strong>NB!</strong></em> <em>Check and your account.</em></p>
-</li>
-<li><p>Firstly, your request will be put into a queue and this picture will appear.</p>
- <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-3" src="_images/ondemand-3.png" /></p>
- </div></li>
-<li><p>When needed resources will become available, your session will start and this picture will appear.</p>
-<p>We recommend to use default settings for “Compression” and “Image Quality”, unless you require high-quality screenshots.</p>
- <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-4" src="_images/ondemand-4.png" /></p>
- </div><p><em><strong>NB!</strong></em> <em>Do not use quality settings “Compression 0” and/or “Image Quality 9”, this will cause a zlib error message. The message box can be removed by reloading the browser tab.</em></p>
- <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="error" src="_images/ondemand-zlib-error.png" /></p>
- </div></li>
-<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
-<p>Will appear your HPC Desktop, where user can open XTerminal.</p>
- <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-5" src="_images/ondemand-5.png" /></p>
- </div></li>
-<li><p>To start interactive desktop press “Launch TalTech HPC Desktop”</p>
-<p>Load environment and program needed and start vizualization. More detailed instructions on environment and program loading are given below.</p>
- <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-6" src="_images/ondemand-6.png" /></p>
- </div></li>
-</ol>
+<p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
+<p><a class="reference internal" href="ondemand.html"><span class="doc">More information can be found at OnDemand page.</span></a></p>
 <section id="available-visualization-software-on-compute-nodes">
 <h3><em>Available visualization software on compute nodes</em><a class="headerlink" href="#available-visualization-software-on-compute-nodes" title="Permalink to this heading"></a></h3>
 <p>Program from a list below and its environment can be loaded by:</p>
@@ -167,17 +143,26 @@
 <section id="gaussview-avogadro">
 <h4>GaussView &amp; Avogadro<a class="headerlink" href="#gaussview-avogadro" title="Permalink to this heading"></a></h4>
 <p>GaussView can be started by commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">gaussview</span>
-<span class="n">gview</span><span class="o">.</span><span class="n">sh</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>rocky8/all
+module<span class="w"> </span>load<span class="w"> </span>gaussview
+gview.sh<span class="w"> </span>&lt;job<span class="w"> </span>name&gt;
 </pre></div>
 </div>
 <p>To run Avogadro:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">avogadro</span>
-<span class="n">avogadro</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>rocky8/all
+module<span class="w"> </span>load<span class="w"> </span>avogadro
+avogadro<span class="w"> </span>&lt;job<span class="w"> </span>name&gt;
 </pre></div>
 </div>
+</section>
+<section id="d-slicer">
+<h4>3D Slicer<a class="headerlink" href="#d-slicer" title="Permalink to this heading"></a></h4>
+<p>Visualization and processing of medical images (CT, MRI)</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>rocky8
+module<span class="w"> </span>load<span class="w"> </span>slicer
+</pre></div>
+</div>
+<br>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
@@ -193,16 +178,36 @@
 <section id="paraview-with-egl-acceleration">
 <h3><em>ParaView with EGL acceleration</em><a class="headerlink" href="#paraview-with-egl-acceleration" title="Permalink to this heading"></a></h3>
 <p>It is not possible to have EGL rendering and the OpenGL GUI compiled together, therefore the EGL accelerated <code class="docutils literal notranslate"><span class="pre">pvserver</span></code> and the OpenGL GUI come from different modules and can run on different compute nodes.</p>
-<p>The startup procedure for EGL accelerated rendering is the same as for use of ParaView in distributed mode.</p>
-<ol class="simple">
-<li><p>Start an OnDemand desktop on a GPU node and request a GPU</p></li>
-<li><p>Open 2 XTerms</p></li>
-<li><p>in Xterm 1: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">rocky8-spack</span> <span class="pre">paraview/5.12.1-gcc-10.3.0-dotq</span></code> and start the ParaView GUI <code class="docutils literal notranslate"><span class="pre">paraview</span></code></p></li>
-<li><p>in Xterm 2: <code class="docutils literal notranslate"><span class="pre">module</span> <span class="pre">load</span> <span class="pre">rocky8</span> <span class="pre">paraview/5.12.1-egl</span></code> and start the ParaView server <code class="docutils literal notranslate"><span class="pre">pvserver</span></code> (alternatively, you could ssh into base and start a separate job on a gpu node with srun or sbatch)</p></li>
-<li><p>in GUI select “Connect” and connect to either localhost:11111 or the gpu node the pvserver runs on, use “manual” connect, then choose “connect”.</p></li>
+<p>The startup procedure for EGL accelerated rendering is the same as for use of ParaView in distributed mode:</p>
+<ol>
+<li><p>Start an OnDemand desktop on a GPU node and request a GPU.</p></li>
+<li><p>Open 2 XTerms.</p></li>
+<li><p>In Xterm 1 start the ParaView GUI:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>rocky8-spack<span class="w"> </span>
+module<span class="w"> </span>load<span class="w"> </span>paraview/5.12.1-gcc-10.3.0-dotq
+paraview
+</pre></div>
+</div>
+</li>
+<li><p>In Xterm 2 start the ParaView server:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>rocky8<span class="w"> </span>
+module<span class="w"> </span>load<span class="w"> </span>paraview/5.12.1-egl<span class="w"> </span>
+pvserver
+</pre></div>
+</div>
+<p>(alternatively, you could ssh into base and start a separate job on a gpu node with srun or sbatch) in GUI select “Connect” and connect to either localhost:11111 or the gpu node the pvserver runs on, use “manual” connect, then choose “connect”.</p>
+</li>
+<li><p>In Xterm 3 run <code class="docutils literal notranslate"><span class="pre">nvtop</span></code> to check if your application actually uses the GPU:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>nvtop
+</pre></div>
+</div>
+</li>
 </ol>
+<div style="width:85%; height:85%; margin-left: auto; margin-right: auto;"> <p><img alt="paraview-XT-1" src="_images/paraview-XT-1.png" />
+<img alt="paraview-XT-3" src="_images/paraview-XT-3.png" /></p>
+</div>	<p><img alt="paraview" src="_images/paraview.png" /></p>
 <p>A similar procedure can also be used to connect a client running on your desktop computer to the pvserver on the compute node.</p>
-<p>For more explanations, see (ParaView WIKI)[https://www.paraview.org/Wiki/Reverse_connection_and_port_forwarding].</p>
+<p><a class="reference external" href="https://www.paraview.org/Wiki/Reverse_connection_and_port_forwarding">For more explanations, see ParaView WIKI.</a></p>
 </section>
 <section id="starccm-with-hardware-rendering">
 <h3><em>StarCCM+ with hardware rendering</em><a class="headerlink" href="#starccm-with-hardware-rendering" title="Permalink to this heading"></a></h3>
@@ -215,25 +220,27 @@
 </section>
 <section id="in-situ-visualization-in-preparation">
 <h2><em>In-situ visualization (in preparation)</em><a class="headerlink" href="#in-situ-visualization-in-preparation" title="Permalink to this heading"></a></h2>
+<hr class="docutils" />
 <p>In-situ visualization creates the visualization during the simulation instead of during the postprocesssing phase. The simulation code needs to be connected to in-situ visualization libraries. e.g. Catalyst (ParaView), LibSim (VisIt) and Ascent.</p>
-<p>The following are installed on our cluster</p>
-<ul class="simple">
-<li><p>(Catalyst)[https://www.paraview.org/hpc-insitu/]</p></li>
-<li><p>(Ascent)[https://github.com/Alpine-DAV/ascent]</p></li>
+<div class="simple1">
+The following are installed on our cluster:<ul class="simple">
+<li><p><a class="reference external" href="https://www.paraview.org/hpc-insitu/">Catalyst</a></p></li>
+<li><p><a class="reference external" href="https://github.com/Alpine-DAV/ascent">Ascent</a></p></li>
 <li><p>LibSim</p></li>
 <li><p>SENSEI</p></li>
 </ul>
-<p>Ascent on all nodes</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">ascent</span>
+</div>
+<br><p>Ascent on all nodes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>rocky8-spack
+module<span class="w"> </span>load<span class="w"> </span>ascent
 </pre></div>
 </div>
-<p>Catalyst on all nodes</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">libcatalyst</span><span class="o">/</span><span class="mf">2.0.0</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="mf">10.3.0</span><span class="o">-</span><span class="n">openblas</span><span class="o">-</span><span class="n">bp26</span>
+<p>Catalyst on all nodes:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>module<span class="w"> </span>load<span class="w"> </span>rocky8-spack
+module<span class="w"> </span>load<span class="w"> </span>libcatalyst/2.0.0-gcc-10.3.0-openblas-bp26
 </pre></div>
 </div>
-<p>Catalyst can be used within OpenFOAM and (NEK5000)[https://github.com/KTH-Nek5000/InSituPackage] simulations.</p>
+<p><a class="reference external" href="https://github.com/KTH-Nek5000/InSituPackage">Catalyst can be used within OpenFOAM and NEK5000 simulations.</a></p>
 <br>
 <br></section>
 </section>
