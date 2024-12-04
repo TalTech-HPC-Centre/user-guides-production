@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>OnDemand.md &mdash; HPC user-guides 2024 documentation</title>
+  <title>OnDemand &mdash; HPC user-guides 2024 documentation</title>
       <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
       <link rel="stylesheet" type="text/css" href="_static/css/extra.css" />
@@ -22,7 +22,9 @@
         <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Courses and introductions" href="learning.html" />
+    <link rel="prev" title="Quickstart: Cluster" href="quickstart.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,10 +47,19 @@
   </form>
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
-              <ul>
+              <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="lumi.html">LUMI</a></li>
 <li class="toctree-l1"><a class="reference internal" href="cloud.html">Quickstart: Cloud</a></li>
 <li class="toctree-l1"><a class="reference internal" href="quickstart.html">Quickstart: Cluster</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">OnDemand</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-cpu">OnDemand Desktop (CPU)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ondemand-desktop-on-gpu-nodes-hardware-rendering">OnDemand Desktop on GPU nodes (hardware rendering)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#paraview-with-egl-acceleration"><em>ParaView with EGL acceleration</em></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#starccm-with-hardware-rendering"><em>StarCCM+ with hardware rendering</em></a></li>
+</ul>
+</li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="learning.html">Courses and introductions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Module environment (lmod)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="software.html">Software packages</a></li>
@@ -75,7 +86,7 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">OnDemand.md</li>
+      <li class="breadcrumb-item active">OnDemand</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/ondemand.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -85,9 +96,9 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ondemand-md">
-<h1>OnDemand.md<a class="headerlink" href="#ondemand-md" title="Permalink to this heading"></a></h1>
-<p>OnDemand is a graphical user interface that allows access to HPC via a web browser. Within the OnDemand environment users can access to a HPC files, submit jobs to a cluster, monitor jobs and HPS resources, run interactive applications like Jupyter.</p>
+  <section id="ondemand">
+<h1>OnDemand<a class="headerlink" href="#ondemand" title="Permalink to this heading"></a></h1>
+<p>OnDemand (<a class="reference external" href="https://ondemand.hpc.taltech.ee">available at https://ondemand.hpc.taltech.ee</a>) is a graphical user interface that allows access to HPC via a web browser. Within the OnDemand environment users can access to a HPC files, submit jobs to a cluster, monitor jobs and HPS resources, run interactive applications like Jupyter.</p>
 <p>The default desktop environment is xfce, which is configurable, lightweight and fast.</p>
 <p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line.</p>
 <br>
@@ -95,7 +106,7 @@
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr><section id="ondemand-desktop-cpu">
 <h2>OnDemand Desktop (CPU)<a class="headerlink" href="#ondemand-desktop-cpu" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
-<p>The menu only contain very few programs from the operating system. However, <strong>all installed software can be open an XTerminal</strong> using the module system as you would from the command-line. To do that:</p>
+<p>To enter home directory using OnDemand:</p>
 <ol>
 <li><p>Choose “TalTech HPC Desktop”.</p>
  <div style="width:85%; height:!85%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-1" src="_images/ondemand-1.png" /></p>
@@ -122,50 +133,10 @@
  <div style="width:65%; height:!65%; margin-left: auto; margin-right: auto;"> <p><img alt="ondemand-6" src="_images/ondemand-6.png" /></p>
  </div></li>
 </ol>
-<section id="available-visualization-software-on-compute-nodes">
-<h3><em>Available visualization software on compute nodes</em><a class="headerlink" href="#available-visualization-software-on-compute-nodes" title="Permalink to this heading"></a></h3>
-<p>Program from a list below and its environment can be loaded by:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
-<span class="n">module</span> <span class="n">load</span> <span class="o">&lt;</span><span class="n">program</span> <span class="n">name</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<p><em>where <strong>program</strong> must be written in <strong>lowercase letters</strong></em></p>
-<ul class="simple">
-<li><p>ParaView</p></li>
-<li><p>VisIt</p></li>
-</ul>
-<!-- -   COVISE --><ul class="simple">
-<li><p>Py-MayaVi</p></li>
-</ul>
-<!-- -   OpenDX --><ul class="simple">
-<li><p>Molden</p></li>
-</ul>
-<!-- -   VAPOR --><ul class="simple">
-<li><p>VMD</p></li>
-<li><p>Ovito</p></li>
-<li><p>Ospray (raytracer)</p></li>
-<li><p>PoVray (raytracer)</p></li>
-</ul>
-<br><p>Programs are run by corresponding names in lowercase letters: <strong>paraview</strong> / <strong>visit</strong> / <strong>vmd</strong>.</p>
-<section id="gaussview-avogadro">
-<h4>GaussView &amp; Avogadro<a class="headerlink" href="#gaussview-avogadro" title="Permalink to this heading"></a></h4>
-<p>GaussView can be started by commands:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">gaussview</span>
-<span class="n">gview</span><span class="o">.</span><span class="n">sh</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
-</pre></div>
-</div>
-<p>To run Avogadro:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">/</span><span class="nb">all</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">avogadro</span>
-<span class="n">avogadro</span> <span class="o">&lt;</span><span class="n">job</span> <span class="n">name</span><span class="o">&gt;</span>
-</pre></div>
-</div>
+<p><a class="reference internal" href="visualization.html"><span class="doc">More information about using onDemand can be found at visualization page.</span></a></p>
 <br>
 <hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
 <hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-</section>
-</section>
 <section id="ondemand-desktop-on-gpu-nodes-hardware-rendering">
 <h2>OnDemand Desktop on GPU nodes (hardware rendering)<a class="headerlink" href="#ondemand-desktop-on-gpu-nodes-hardware-rendering" title="Permalink to this heading"></a></h2>
 <hr class="docutils" />
@@ -193,38 +164,17 @@
 </pre></div>
 </div>
 <br>
-<hr style="margin-right: 0px; margin-bottom: 4px; margin-left: 0px; margin-top: -24px; border:2px solid  #d9d9d9 "></hr>
-<hr style="margin: 4px 0px; border:1px solid  #d9d9d9 "></hr></section>
-</section>
-<section id="in-situ-visualization-in-preparation">
-<h2><em>In-situ visualization (in preparation)</em><a class="headerlink" href="#in-situ-visualization-in-preparation" title="Permalink to this heading"></a></h2>
-<p>In-situ visualization creates the visualization during the simulation instead of during the postprocesssing phase. The simulation code needs to be connected to in-situ visualization libraries. e.g. Catalyst (ParaView), LibSim (VisIt) and Ascent.</p>
-<p>The following are installed on our cluster</p>
-<ul class="simple">
-<li><p>(Catalyst)[https://www.paraview.org/hpc-insitu/]</p></li>
-<li><p>(Ascent)[https://github.com/Alpine-DAV/ascent]</p></li>
-<li><p>LibSim</p></li>
-<li><p>SENSEI</p></li>
-</ul>
-<p>Ascent on all nodes</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">ascent</span>
-</pre></div>
-</div>
-<p>Catalyst on all nodes</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">rocky8</span><span class="o">-</span><span class="n">spack</span>
-<span class="n">module</span> <span class="n">load</span> <span class="n">libcatalyst</span><span class="o">/</span><span class="mf">2.0.0</span><span class="o">-</span><span class="n">gcc</span><span class="o">-</span><span class="mf">10.3.0</span><span class="o">-</span><span class="n">openblas</span><span class="o">-</span><span class="n">bp26</span>
-</pre></div>
-</div>
-<p>Catalyst can be used within OpenFOAM and (NEK5000)[https://github.com/KTH-Nek5000/InSituPackage] simulations.</p>
-<br>
 <br></section>
+</section>
 </section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quickstart.html" class="btn btn-neutral float-left" title="Quickstart: Cluster" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="learning.html" class="btn btn-neutral float-right" title="Courses and introductions" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
